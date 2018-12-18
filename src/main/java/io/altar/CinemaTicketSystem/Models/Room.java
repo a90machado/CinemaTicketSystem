@@ -4,7 +4,9 @@ public class Room extends BaseEntity{
 	
 	// seatNumber - constant
 	
-	private String releaseDate;
-	private String endDate;
+	private Movie movie;
+	private int availableSeats;
+	
+	
 
 }
