@@ -1,14 +1,17 @@
 package io.altar.CinemaTicketSystem.Models;
 
+import java.util.List;
+
 public class Room extends BaseEntity{
 	
 	// Attributes:
 	private Movie movie;
 	private int availableSeats;
 	private int totalSeats;
+	private List<String> sessions;
 	
 	// Constructor:
-	private Room(Movie movie, int totalSeats){
+	private Room(Movie movie, int totalSeats, List<String> sessions){
 		this.movie = movie;
 		this.totalSeats = totalSeats;
 		this.availableSeats = totalSeats;
@@ -26,10 +29,14 @@ public class Room extends BaseEntity{
 	public int getAvailableSeats() {
 		return availableSeats;
 	}
-
+	
 	public void setAvailableSeats() {
-		this.availableSeats--;
+		this.availableSeats=totalSeats;
 	}
+
+	public void takeASeat(){
+		this.availableSeats--;
+	}	
 
 	public int getTotalSeats() {
 		return totalSeats;

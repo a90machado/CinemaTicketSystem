@@ -2,9 +2,9 @@ package io.altar.CinemaTicketSystem.Models;
 
 import java.util.Date;
 
-public class Movie extends BaseEntity{	
-	
-	//Attributes
+public class Movie extends BaseEntity {
+
+	// Attributes
 	private String title;
 	private String image;
 	private int minimumAge;
@@ -14,10 +14,10 @@ public class Movie extends BaseEntity{
 	private String director;
 	private String cast;
 	private String synopsis;
-	
-	//Constructor
-	public Movie(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate, String director,
-			String cast, String synopsis) {		
+
+	// Constructor
+	public Movie(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate,
+			String director, String cast, String synopsis) {
 		this.title = title;
 		this.image = image;
 		this.minimumAge = minimumAge;
@@ -41,7 +41,6 @@ public class Movie extends BaseEntity{
 	public String getImage() {
 		return image;
 	}
-
 
 	public void setImage(String image) {
 		this.image = image;
@@ -101,5 +100,5 @@ public class Movie extends BaseEntity{
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
-	}	
+	}
 }
