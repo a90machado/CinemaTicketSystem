@@ -4,7 +4,6 @@ package io.altar.CinemaTicketSystem.Models;
 public class Ticket extends BaseEntity {
 
 	// Attributes
-	private static final long serialVersionUID = 1L;
 	private String title;
 	private Movie movie;
 	private Room room;
@@ -70,10 +69,6 @@ public class Ticket extends BaseEntity {
 
 	public void setTypeOfTicket(String typeOfTicket) {
 		this.typeOfTicket = typeOfTicket;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }
