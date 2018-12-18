@@ -6,6 +6,7 @@ public class Movie extends BaseEntity{
 	
 	//Attributes
 	private String title;
+	private String image;
 	private int minimumAge;
 	private int duration;
 	private Date releaseDate;
@@ -15,9 +16,10 @@ public class Movie extends BaseEntity{
 	private String synopsis;
 	
 	//Constructor
-	public Movie(String title, int minimumAge, int duration, Date releaseDate, Date endDate, String director,
+	public Movie(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate, String director,
 			String cast, String synopsis) {		
 		this.title = title;
+		this.image = image;
 		this.minimumAge = minimumAge;
 		this.duration = duration;
 		this.releaseDate = releaseDate;
@@ -34,6 +36,15 @@ public class Movie extends BaseEntity{
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public int getMinimumAge() {
