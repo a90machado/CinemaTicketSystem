@@ -11,10 +11,9 @@ public class Ticket extends BaseEntity {
 	private String session;
 	private int duration;
 	private String typeOfTicket;
-	
-	//Constructor
-	public Ticket(String nameOfTheMovie, Movie movie, Room room, String session, int duration,
-			String typeOfTicket) {
+
+	// Constructor
+	public Ticket(String nameOfTheMovie, Movie movie, Room room, String session, int duration, String typeOfTicket) {
 		super();
 		this.title = nameOfTheMovie;
 		this.movie = movie;
@@ -23,7 +22,8 @@ public class Ticket extends BaseEntity {
 		this.duration = duration;
 		this.typeOfTicket = typeOfTicket;
 	}
-	//Methods
+
+	// Methods
 	public String getNameOfTheMovie() {
 		return title;
 	}
@@ -75,5 +75,5 @@ public class Ticket extends BaseEntity {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
+
 }
