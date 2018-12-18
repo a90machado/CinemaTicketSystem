@@ -1,30 +1,33 @@
 //This creates the attributes for ticket and have the methods to get and edit the attributes
 package io.altar.CinemaTicketSystem.Models;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+@Entity
+@NamedQueries({ @NamedQuery(name = Ticket.GET_ALL_TICKETS_QUERY_NAME, query = "SELECT t FROM Ticket t"),
+		@NamedQuery(name = Ticket.DELETE_ALL_TICKETS_QUERY_NAME, query = "DELETE FROM Ticket") })
 public class Ticket extends BaseEntity {	
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
-	private Movie movie;
 	private Room room;
 	private String typeOfTicket;
+	private double price;
+	
+	// Named Query:
+	public static final String GET_ALL_TICKETS_QUERY_NAME = "getAllTickets";
+	public static final String DELETE_ALL_TICKETS_QUERY_NAME = "deleteAllTickets";
 
 	// Constructor
-	public Ticket(Movie movie, Room room, String typeOfTicket) {
-		this.movie = movie;
+	public Ticket(Room room, String typeOfTicket, double price) {
 		this.room = room;
 		this.typeOfTicket = typeOfTicket;
+		this.price = price;
 	}
 
-	// Methods
-	public Movie getMovie() {
-		return movie;
-	}
-
-	public void setMovie(Movie movie) {
-		this.movie = movie;
-	}
-
+	// Gets and Setters:
 	public Room getRoom() {
 		return room;
 	}
@@ -40,4 +43,13 @@ public class Ticket extends BaseEntity {
 	public void setTypeOfTicket(String typeOfTicket) {
 		this.typeOfTicket = typeOfTicket;
 	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+	
 }

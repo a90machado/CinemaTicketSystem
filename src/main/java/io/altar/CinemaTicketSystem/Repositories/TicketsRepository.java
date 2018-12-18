@@ -12,4 +12,16 @@ public class TicketsRepository extends EntityRepository<Ticket> {
 
 	private TicketsRepository() {
 	}
+	
+	protected Class<Ticket> getEntityClass() {
+		return Ticket.class;
+	}
+
+	protected String getAllEntityQueryName() {
+		return Ticket.GET_ALL_TICKETS_QUERY_NAME;
+	}
+
+	protected String deleteAllEntityQueryName() {
+		return Ticket.DELETE_ALL_TICKETS_QUERY_NAME;
+	}
 }

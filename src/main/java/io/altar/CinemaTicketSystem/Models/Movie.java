@@ -2,6 +2,13 @@ package io.altar.CinemaTicketSystem.Models;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+
+@Entity
+@NamedQueries({ @NamedQuery(name = Movie.GET_ALL_MOVIES_QUERY_NAME, query = "SELECT m FROM Movie m"),
+		@NamedQuery(name = Movie.DELETE_ALL_MOVIES_QUERY_NAME, query = "DELETE FROM Movie") })
 public class Movie extends BaseEntity {	
 	private static final long serialVersionUID = 1L;
 
@@ -15,10 +22,13 @@ public class Movie extends BaseEntity {
 	private String director;
 	private String cast;
 	private String synopsis;
+	
+	// NamedQuerys
+	public static final String GET_ALL_MOVIES_QUERY_NAME = "getAllMovies";
+	public static final String DELETE_ALL_MOVIES_QUERY_NAME = "deleteAllMovies";
 
 	// Constructor
-	public Movie(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate,
-			String director, String cast, String synopsis) {
+	public Movie(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate, String director, String cast, String synopsis) {
 		this.title = title;
 		this.image = image;
 		this.minimumAge = minimumAge;

@@ -12,4 +12,16 @@ public class MoviesRepository extends EntityRepository<Movie> {
 
 	private MoviesRepository() {
 	}
+	
+	protected Class<Movie> getEntityClass() {
+		return Movie.class;
+	}
+
+	protected String getAllEntityQueryName() {
+		return Movie.GET_ALL_MOVIES_QUERY_NAME;
+	}
+
+	protected String deleteAllEntityQueryName() {
+		return Movie.DELETE_ALL_MOVIES_QUERY_NAME;
+	}
 }
