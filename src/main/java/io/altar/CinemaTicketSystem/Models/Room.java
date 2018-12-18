@@ -29,7 +29,7 @@ public class Room extends BaseEntity{
 		this.availableSeats = totalSeats;
 	}
 	
-	// Methods
+	// Gets and Setters:
 	public Movie getMovie() {
 		return movie;
 	}

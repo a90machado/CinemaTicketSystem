@@ -41,6 +41,7 @@ public class EntityServices<R extends EntityBusiness<S, T>, S extends EntityRepo
 	}
 
 	@POST
+	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public T create(T entity) {

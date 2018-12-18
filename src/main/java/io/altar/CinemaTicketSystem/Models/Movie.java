@@ -40,7 +40,7 @@ public class Movie extends BaseEntity {
 		this.synopsis = synopsis;
 	}
 
-	// Methods
+	// Gets and Setters:
 	public String getTitle() {
 		return title;
 	}
