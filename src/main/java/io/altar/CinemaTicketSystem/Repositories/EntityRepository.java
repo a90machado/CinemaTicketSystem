@@ -1,5 +1,7 @@
 package io.altar.CinemaTicketSystem.Repositories;
 
-public abstract class EntityRepository {
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
+
+public abstract class EntityRepository <T extends BaseEntity> {
 
 }
