@@ -1,23 +1,33 @@
 package io.altar.CinemaTicketSystem.Models;
 
+import java.util.Date;
+
 public class Movie extends BaseEntity{	
 	
+	//Attributes
 	private String title;
 	private int minimumAge;
-	private int duration; 		
+	private int duration;
+	private Date releaseDate;
+	private Date endDate;
 	private String director;
 	private String cast;
 	private String synopsis;
 	
-	public Movie(String title, int minimumAge, int duration, String director, String cast, String synopsis) {		
+	//Constructor
+	public Movie(String title, int minimumAge, int duration, Date releaseDate, Date endDate, String director,
+			String cast, String synopsis) {		
 		this.title = title;
 		this.minimumAge = minimumAge;
 		this.duration = duration;
+		this.releaseDate = releaseDate;
+		this.endDate = endDate;
 		this.director = director;
 		this.cast = cast;
 		this.synopsis = synopsis;
 	}
 
+	// Getters and Setters
 	public String getTitle() {
 		return title;
 	}
@@ -42,6 +52,22 @@ public class Movie extends BaseEntity{
 		this.duration = duration;
 	}
 
+	public Date getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(Date releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
 	public String getDirector() {
 		return director;
 	}
@@ -64,5 +90,5 @@ public class Movie extends BaseEntity{
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
-	}
+	}	
 }
