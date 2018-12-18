@@ -2,6 +2,8 @@
 package io.altar.CinemaTicketSystem.Models;
 
 public class Ticket extends BaseEntity {
+	
+	private static final long serialVersionUID = 1L;
 
 	// Attributes
 	private Movie movie;

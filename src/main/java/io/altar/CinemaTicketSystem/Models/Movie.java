@@ -3,6 +3,8 @@ package io.altar.CinemaTicketSystem.Models;
 import java.util.Date;
 
 public class Movie extends BaseEntity {
+	
+	private static final long serialVersionUID = 1L;
 
 	// Attributes
 	private String title;

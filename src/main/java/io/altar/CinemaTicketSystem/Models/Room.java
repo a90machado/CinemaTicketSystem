@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Room extends BaseEntity{
 	
+	private static final long serialVersionUID = 1L;
+	
 	// Attributes:
 	private Movie movie;
 	private int availableSeats;
@@ -46,4 +48,11 @@ public class Room extends BaseEntity{
 		this.totalSeats = totalSeats;
 	}
 
+	public List<String> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<String> sessions) {
+		this.sessions = sessions;
+	}
 }
