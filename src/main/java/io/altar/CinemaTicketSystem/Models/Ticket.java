@@ -26,6 +26,7 @@ public class Ticket extends BaseEntity {
 		this.typeOfTicket = typeOfTicket;
 		this.price = price;
 	}
+	public Ticket() {}
 
 	// Gets and Setters:
 	public Room getRoom() {

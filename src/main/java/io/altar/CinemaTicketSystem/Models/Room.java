@@ -23,11 +23,13 @@ public class Room extends BaseEntity{
 	public static final String DELETE_ALL_ROOMS_QUERY_NAME = "deleteAllRooms";
 	
 	// Constructor:
-	private Room(Movie movie, int totalSeats, List<String> sessions){
+	public Room(Movie movie, int totalSeats, List<String> sessions){
 		this.movie = movie;
 		this.totalSeats = totalSeats;
 		this.availableSeats = totalSeats;
 	}
+	public Room() {}
+
 	
 	// Gets and Setters:
 	public Movie getMovie() {
