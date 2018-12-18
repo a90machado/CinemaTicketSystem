@@ -5,33 +5,31 @@ public class Ticket extends BaseEntity {
 
 	// Attributes
 	private static final long serialVersionUID = 1L;
-	private String nameOfTheMovie;
+	private String title;
 	private Movie movie;
 	private Room room;
 	private String session;
-	private String duration;
-	private int minutes;
+	private int duration;
 	private String typeOfTicket;
 	
 	//Constructor
-	public Ticket(String nameOfTheMovie, Movie movie, Room room, String session, String duration, int minutes,
+	public Ticket(String nameOfTheMovie, Movie movie, Room room, String session, int duration,
 			String typeOfTicket) {
 		super();
-		this.nameOfTheMovie = nameOfTheMovie;
+		this.title = nameOfTheMovie;
 		this.movie = movie;
 		this.room = room;
 		this.session = session;
 		this.duration = duration;
-		this.minutes = minutes;
 		this.typeOfTicket = typeOfTicket;
 	}
 	//Methods
 	public String getNameOfTheMovie() {
-		return nameOfTheMovie;
+		return title;
 	}
 
 	public void setNameOfTheMovie(String nameOfTheMovie) {
-		this.nameOfTheMovie = nameOfTheMovie;
+		this.title = nameOfTheMovie;
 	}
 
 	public Movie getMovie() {
@@ -58,20 +56,12 @@ public class Ticket extends BaseEntity {
 		this.session = session;
 	}
 
-	public String getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
-	}
-
-	public int getMinutes() {
-		return minutes;
-	}
-
-	public void setMinutes(int minutes) {
-		this.minutes = minutes;
 	}
 
 	public String getTypeOfTicket() {
