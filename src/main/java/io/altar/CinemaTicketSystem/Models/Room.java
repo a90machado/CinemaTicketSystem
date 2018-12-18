@@ -2,8 +2,7 @@ package io.altar.CinemaTicketSystem.Models;
 
 import java.util.List;
 
-public class Room extends BaseEntity{
-	
+public class Room extends BaseEntity{	
 	private static final long serialVersionUID = 1L;
 	
 	// Attributes:
@@ -19,7 +18,7 @@ public class Room extends BaseEntity{
 		this.availableSeats = totalSeats;
 	}
 	
-	// Getters and Setters:
+	// Methods
 	public Movie getMovie() {
 		return movie;
 	}

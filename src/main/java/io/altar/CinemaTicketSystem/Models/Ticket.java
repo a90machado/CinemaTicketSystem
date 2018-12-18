@@ -1,8 +1,7 @@
 //This creates the attributes for ticket and have the methods to get and edit the attributes
 package io.altar.CinemaTicketSystem.Models;
 
-public class Ticket extends BaseEntity {
-	
+public class Ticket extends BaseEntity {	
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
@@ -18,7 +17,6 @@ public class Ticket extends BaseEntity {
 	}
 
 	// Methods
-
 	public Movie getMovie() {
 		return movie;
 	}
