@@ -3,13 +3,13 @@ package io.altar.CinemaTicketSystem.Models;
 public class Movie extends BaseEntity{	
 	
 	private String title;
-	private String minimumAge;
-	private String duration;	
+	private int minimumAge;
+	private int duration; 		
 	private String director;
 	private String cast;
 	private String synopsis;
 	
-	public Movie(String title, String minimumAge, String duration, String director, String cast, String synopsis) {		
+	public Movie(String title, int minimumAge, int duration, String director, String cast, String synopsis) {		
 		this.title = title;
 		this.minimumAge = minimumAge;
 		this.duration = duration;
@@ -26,19 +26,19 @@ public class Movie extends BaseEntity{
 		this.title = title;
 	}
 
-	public String getMinimumAge() {
+	public int getMinimumAge() {
 		return minimumAge;
 	}
 
-	public void setMinimumAge(String minimumAge) {
+	public void setMinimumAge(int minimumAge) {
 		this.minimumAge = minimumAge;
 	}
 
-	public String getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 
-	public void setDuration(String duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 
@@ -64,7 +64,5 @@ public class Movie extends BaseEntity{
 
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
-	}	
-	
-
+	}
 }
