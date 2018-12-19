@@ -2,9 +2,12 @@ package io.altar.CinemaTicketSystem.Models;
 
 import java.sql.Time;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+
 
 @Entity
 @NamedQueries({ @NamedQuery(name = Room.GET_ALL_ROOMS_QUERY_NAME, query = "SELECT r FROM Room r"),
@@ -12,7 +15,8 @@ import javax.persistence.NamedQuery;
 public class Room extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
-	// Attributes:
+	// Attributes:	
+	@ManyToOne(cascade = CascadeType.ALL)	
 	private Movie movie;
 	private int availableSeats;
 	private int totalSeats;

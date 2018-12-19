@@ -1,27 +1,30 @@
-//This creates the attributes for ticket and have the methods to get and edit the attributes
 package io.altar.CinemaTicketSystem.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = Ticket.GET_ALL_TICKETS_QUERY_NAME, query = "SELECT t FROM Ticket t"),
 		@NamedQuery(name = Ticket.DELETE_ALL_TICKETS_QUERY_NAME, query = "DELETE FROM Ticket") })
-public class Ticket extends BaseEntity {	
+public class Ticket extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
 	private String typeOfTicket;
 	private double price;
-	
+
 	// Named Query:
 	public static final String GET_ALL_TICKETS_QUERY_NAME = "getAllTickets";
 	public static final String DELETE_ALL_TICKETS_QUERY_NAME = "deleteAllTickets";
 
 	// Constructor
-	public Ticket() {}
+	public Ticket() {
+	}
 
 	// Gets and Setters:
 	public Room getRoom() {
@@ -47,5 +50,5 @@ public class Ticket extends BaseEntity {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	
+
 }

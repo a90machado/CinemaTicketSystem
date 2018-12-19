@@ -9,7 +9,8 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({ @NamedQuery(name = Movie.GET_ALL_MOVIES_QUERY_NAME, query = "SELECT m FROM Movie m"),
 		@NamedQuery(name = Movie.DELETE_ALL_MOVIES_QUERY_NAME, query = "DELETE FROM Movie") })
-public class Movie extends BaseEntity {	
+
+public class Movie extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
@@ -22,14 +23,15 @@ public class Movie extends BaseEntity {
 	private String director;
 	private String cast;
 	private String synopsis;
-	
+
 	// NamedQuerys
 	public static final String GET_ALL_MOVIES_QUERY_NAME = "getAllMovies";
 	public static final String DELETE_ALL_MOVIES_QUERY_NAME = "deleteAllMovies";
 
-	// Constructor	
-	public Movie() {}
-	
+	// Constructor
+	public Movie() {
+	}
+
 	// Gets and Setters:
 	public String getTitle() {
 		return title;
