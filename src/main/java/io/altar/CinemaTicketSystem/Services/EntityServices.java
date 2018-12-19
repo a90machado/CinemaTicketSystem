@@ -11,10 +11,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
 
 import io.altar.CinemaTicketSystem.Business.EntityBusiness;
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
@@ -24,15 +22,6 @@ public abstract class EntityServices<R extends EntityBusiness<S, T>, S extends E
 
 	@Inject
 	protected R business;
-	@Context
-	protected UriInfo context;
-
-	@GET
-	@Path("healthCheck")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String healthCheck() {
-		return "URI " + context.getRequestUri().toString() + " is OK!";
-	}
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

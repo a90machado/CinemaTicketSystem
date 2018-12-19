@@ -28,16 +28,6 @@ public class Room extends BaseEntity {
 	public Room() {
 	}
 
-	public Room(Movie movie, int availableSeats, int totalSeats, Timer sessionBegin, Timer sessionTerminate,
-			Timer pause) {
-		this.movie = movie;
-		this.totalSeats = totalSeats;
-		this.availableSeats = totalSeats;
-//		this.sessionBegin = sessionBegin;
-//		this.sessionTerminate = sessionTerminate;
-//		this.pause = pause;
-	}
-
 	// Gets and Setters:	
 	public Movie getMovie() {
 		return movie;
@@ -51,8 +41,12 @@ public class Room extends BaseEntity {
 		return availableSeats;
 	}
 
-	public void setAvailableSeats(int availableSeats) {
-		this.availableSeats = availableSeats;
+	public void setAvailableSeats() {
+		this.availableSeats = totalSeats;
+	}
+	
+	public void takeASeat() {
+		this.availableSeats--;
 	}
 
 	public int getTotalSeats() {

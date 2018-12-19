@@ -21,11 +21,6 @@ public class Ticket extends BaseEntity {
 	public static final String DELETE_ALL_TICKETS_QUERY_NAME = "deleteAllTickets";
 
 	// Constructor
-	public Ticket(Room room, String typeOfTicket, double price) {
-		this.room = room;
-		this.typeOfTicket = typeOfTicket;
-		this.price = price;
-	}
 	public Ticket() {}
 
 	// Gets and Setters:

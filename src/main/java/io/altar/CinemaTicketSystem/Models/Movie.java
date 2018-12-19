@@ -27,19 +27,7 @@ public class Movie extends BaseEntity {
 	public static final String GET_ALL_MOVIES_QUERY_NAME = "getAllMovies";
 	public static final String DELETE_ALL_MOVIES_QUERY_NAME = "deleteAllMovies";
 
-	// Constructor
-	public Movie(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate, String director, String cast, String synopsis) {
-		this.title = title;
-		this.image = image;
-		this.minimumAge = minimumAge;
-		this.duration = duration;
-		this.releaseDate = releaseDate;
-		this.endDate = endDate;
-		this.director = director;
-		this.cast = cast;
-		this.synopsis = synopsis;
-	}
-
+	// Constructor	
 	public Movie() {}
 	
 	// Gets and Setters:
