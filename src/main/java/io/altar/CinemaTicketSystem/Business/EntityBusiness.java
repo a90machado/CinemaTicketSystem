@@ -8,7 +8,7 @@ import javax.transaction.Transactional;
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Repositories.EntityRepository;
 
-public class EntityBusiness<T extends EntityRepository<R>, R extends BaseEntity> {
+public abstract class EntityBusiness<T extends EntityRepository<R>, R extends BaseEntity> {
 
 	@Inject
 	protected T repository;

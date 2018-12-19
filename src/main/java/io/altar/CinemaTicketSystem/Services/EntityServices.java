@@ -20,7 +20,7 @@ import io.altar.CinemaTicketSystem.Business.EntityBusiness;
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Repositories.EntityRepository;
 
-public class EntityServices<R extends EntityBusiness<S, T>, S extends EntityRepository<T>, T extends BaseEntity> {
+public abstract class EntityServices<R extends EntityBusiness<S, T>, S extends EntityRepository<T>, T extends BaseEntity> {
 
 	@Inject
 	protected R business;

@@ -16,9 +16,9 @@ public class Room extends BaseEntity {
 	private Movie movie;
 	private int availableSeats;
 	private int totalSeats;
-	private Timer sessionBegin;
-	private Timer sessionTerminate;
-	private Timer pause;
+//	private Timer sessionBegin;
+//	private Timer sessionTerminate;
+//	private Timer pause;
 
 	// Named Query:
 	public static final String GET_ALL_ROOMS_QUERY_NAME = "getAllRooms";
@@ -33,9 +33,9 @@ public class Room extends BaseEntity {
 		this.movie = movie;
 		this.totalSeats = totalSeats;
 		this.availableSeats = totalSeats;
-		this.sessionBegin = sessionBegin;
-		this.sessionTerminate = sessionTerminate;
-		this.pause = pause;
+//		this.sessionBegin = sessionBegin;
+//		this.sessionTerminate = sessionTerminate;
+//		this.pause = pause;
 	}
 
 	// Gets and Setters:	
@@ -63,28 +63,28 @@ public class Room extends BaseEntity {
 		this.totalSeats = totalSeats;
 	}
 
-	public Timer getSessionBegin() {
-		return sessionBegin;
-	}
-
-	public void setSessionBegin(Timer sessionBegin) {
-		this.sessionBegin = sessionBegin;
-	}
-
-	public Timer getSessionTerminate() {
-		return sessionTerminate;
-	}
-
-	public void setSessionTerminate(Timer sessionTerminate) {
-		this.sessionTerminate = sessionTerminate;
-	}
-
-	public Timer getPause() {
-		return pause;
-	}
-
-	public void setPause(Timer pause) {
-		this.pause = pause;
-	}
+//	public Timer getSessionBegin() {
+//		return sessionBegin;
+//	}
+//
+//	public void setSessionBegin(Timer sessionBegin) {
+//		this.sessionBegin = sessionBegin;
+//	}
+//
+//	public Timer getSessionTerminate() {
+//		return sessionTerminate;
+//	}
+//
+//	public void setSessionTerminate(Timer sessionTerminate) {
+//		this.sessionTerminate = sessionTerminate;
+//	}
+//
+//	public Timer getPause() {
+//		return pause;
+//	}
+//
+//	public void setPause(Timer pause) {
+//		this.pause = pause;
+//	}
 
 }
