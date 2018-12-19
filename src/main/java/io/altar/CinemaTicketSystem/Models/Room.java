@@ -1,6 +1,6 @@
 package io.altar.CinemaTicketSystem.Models;
 
-import java.util.List;
+import java.util.Timer;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -9,29 +9,36 @@ import javax.persistence.NamedQuery;
 @Entity
 @NamedQueries({ @NamedQuery(name = Room.GET_ALL_ROOMS_QUERY_NAME, query = "SELECT r FROM Room r"),
 		@NamedQuery(name = Room.DELETE_ALL_ROOMS_QUERY_NAME, query = "DELETE FROM Room") })
-public class Room extends BaseEntity{	
+public class Room extends BaseEntity {
 	private static final long serialVersionUID = 1L;
-	
+
 	// Attributes:
 	private Movie movie;
 	private int availableSeats;
 	private int totalSeats;
-	//private List<String> sessions;
-	
+	private Timer sessionBegin;
+	private Timer sessionTerminate;
+	private Timer pause;
+
 	// Named Query:
 	public static final String GET_ALL_ROOMS_QUERY_NAME = "getAllRooms";
 	public static final String DELETE_ALL_ROOMS_QUERY_NAME = "deleteAllRooms";
-	
+
 	// Constructor:
-	public Room(Movie movie, int totalSeats/*, List<String> sessions*/){
+	public Room() {
+	}
+
+	public Room(Movie movie, int availableSeats, int totalSeats, Timer sessionBegin, Timer sessionTerminate,
+			Timer pause) {
 		this.movie = movie;
 		this.totalSeats = totalSeats;
 		this.availableSeats = totalSeats;
+		this.sessionBegin = sessionBegin;
+		this.sessionTerminate = sessionTerminate;
+		this.pause = pause;
 	}
-	public Room() {}
 
-	
-	// Gets and Setters:
+	// Gets and Setters:	
 	public Movie getMovie() {
 		return movie;
 	}
@@ -43,14 +50,10 @@ public class Room extends BaseEntity{
 	public int getAvailableSeats() {
 		return availableSeats;
 	}
-	
-	public void setAvailableSeats() {
-		this.availableSeats=totalSeats;
-	}
 
-	public void takeASeat(){
-		this.availableSeats--;
-	}	
+	public void setAvailableSeats(int availableSeats) {
+		this.availableSeats = availableSeats;
+	}
 
 	public int getTotalSeats() {
 		return totalSeats;
@@ -60,11 +63,28 @@ public class Room extends BaseEntity{
 		this.totalSeats = totalSeats;
 	}
 
-	/*public List<String> getSessions() {
-		return sessions;
+	public Timer getSessionBegin() {
+		return sessionBegin;
 	}
 
-	public void setSessions(List<String> sessions) {
-		this.sessions = sessions;
-	}*/
+	public void setSessionBegin(Timer sessionBegin) {
+		this.sessionBegin = sessionBegin;
+	}
+
+	public Timer getSessionTerminate() {
+		return sessionTerminate;
+	}
+
+	public void setSessionTerminate(Timer sessionTerminate) {
+		this.sessionTerminate = sessionTerminate;
+	}
+
+	public Timer getPause() {
+		return pause;
+	}
+
+	public void setPause(Timer pause) {
+		this.pause = pause;
+	}
+
 }
