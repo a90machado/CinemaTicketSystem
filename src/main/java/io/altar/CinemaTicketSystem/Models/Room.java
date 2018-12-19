@@ -1,6 +1,6 @@
 package io.altar.CinemaTicketSystem.Models;
 
-import java.util.Timer;
+import java.sql.Time;
 
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
@@ -16,9 +16,9 @@ public class Room extends BaseEntity {
 	private Movie movie;
 	private int availableSeats;
 	private int totalSeats;
-//	private Timer sessionBegin;
-//	private Timer sessionTerminate;
-//	private Timer pause;
+	private Time sessionBegin;
+	private Time sessionTerminate;
+	private Time pause;
 
 	// Named Query:
 	public static final String GET_ALL_ROOMS_QUERY_NAME = "getAllRooms";
@@ -57,28 +57,28 @@ public class Room extends BaseEntity {
 		this.totalSeats = totalSeats;
 	}
 
-//	public Timer getSessionBegin() {
-//		return sessionBegin;
-//	}
-//
-//	public void setSessionBegin(Timer sessionBegin) {
-//		this.sessionBegin = sessionBegin;
-//	}
-//
-//	public Timer getSessionTerminate() {
-//		return sessionTerminate;
-//	}
-//
-//	public void setSessionTerminate(Timer sessionTerminate) {
-//		this.sessionTerminate = sessionTerminate;
-//	}
-//
-//	public Timer getPause() {
-//		return pause;
-//	}
-//
-//	public void setPause(Timer pause) {
-//		this.pause = pause;
-//	}
+	public Time getSessionBegin() {
+		return sessionBegin;
+	}
+
+	public void setSessionBegin(Time sessionBegin) {
+		this.sessionBegin = sessionBegin;
+	}
+
+	public Time getSessionTerminate() {
+		return sessionTerminate;
+	}
+
+	public void setSessionTerminate(Time sessionTerminate) {
+		this.sessionTerminate = sessionTerminate;
+	}
+
+	public Time getPause() {
+		return pause;
+	}
+
+	public void setPause(Time pause) {
+		this.pause = pause;
+	}
 
 }
