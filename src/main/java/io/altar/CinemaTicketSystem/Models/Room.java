@@ -16,14 +16,14 @@ public class Room extends BaseEntity{
 	private Movie movie;
 	private int availableSeats;
 	private int totalSeats;
-	private List<String> sessions;
+	//private List<String> sessions;
 	
 	// Named Query:
 	public static final String GET_ALL_ROOMS_QUERY_NAME = "getAllRooms";
 	public static final String DELETE_ALL_ROOMS_QUERY_NAME = "deleteAllRooms";
 	
 	// Constructor:
-	public Room(Movie movie, int totalSeats, List<String> sessions){
+	public Room(Movie movie, int totalSeats/*, List<String> sessions*/){
 		this.movie = movie;
 		this.totalSeats = totalSeats;
 		this.availableSeats = totalSeats;
@@ -60,11 +60,11 @@ public class Room extends BaseEntity{
 		this.totalSeats = totalSeats;
 	}
 
-	public List<String> getSessions() {
+	/*public List<String> getSessions() {
 		return sessions;
 	}
 
 	public void setSessions(List<String> sessions) {
 		this.sessions = sessions;
-	}
+	}*/
 }
