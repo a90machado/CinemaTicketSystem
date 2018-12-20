@@ -1,10 +1,5 @@
 package io.altar.CinemaTicketSystem.Repositories;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Timer;
-
-import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
 
 public class RoomsRepository extends EntityRepository<Room> {
@@ -29,13 +24,5 @@ public class RoomsRepository extends EntityRepository<Room> {
 	protected String deleteAllEntityQueryName() {
 		return Room.DELETE_ALL_ROOMS_QUERY_NAME;
 	}
-
-	// Methods
-	public void sessionSchedule(Movie movie, Timer sessionBegin, Timer sessionTerminate, Timer pause) {
-
-		List<Timer> sessionSchedule = new ArrayList<Timer>();
-
-		sessionSchedule.add(sessionBegin);
-
-	}
+	
 }

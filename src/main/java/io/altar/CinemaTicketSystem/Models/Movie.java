@@ -17,7 +17,7 @@ public class Movie extends BaseEntity {
 	private String title;
 	private String image;
 	private int minimumAge;
-	private int duration;
+	private int duration; //Minutes
 	private Date releaseDate;
 	private Date endDate;
 	private String director;
