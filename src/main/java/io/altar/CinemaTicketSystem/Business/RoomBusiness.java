@@ -15,6 +15,8 @@ public class RoomBusiness extends EntityBusiness<RoomsRepository, Room> {
 		
 		room.setAvailableSeats();
 		repository.save(room);
+		
+		
 		return room;
 	}
 

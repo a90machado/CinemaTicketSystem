@@ -7,4 +7,5 @@ import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
 @Path("room")
 public class RoomServices extends EntityServices<RoomBusiness, RoomsRepository, Room>{
+	
 }

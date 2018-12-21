@@ -20,23 +20,29 @@ public class Room extends BaseEntity {
 	// Attributes:
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Movie movie;
-	private int availableSeats;
-	private int totalSeats;	
 	
-	List<Schedule> schedule = new ArrayList<Schedule>();
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Cinema cinema;
+	
+	private int availableSeats;
+	private int totalSeats;
+	
+	List<Schedule> schedules = new ArrayList<Schedule>();
 
 	// Named Query:
 	public static final String GET_ALL_ROOMS_QUERY_NAME = "getAllRooms";
 	public static final String DELETE_ALL_ROOMS_QUERY_NAME = "deleteAllRooms";
 
 	public void addShedules(int cinemaOpen, int cinemaClose, int pause) {
-		Schedule s= new Schedule(cinemaOpen,  cinemaClose, pause);
-		this.schedule.add(s);
+		Schedule s = new Schedule(cinemaOpen,  cinemaClose, pause);
+		this.schedules.add(s);
 	}
 	
 	// Constructor:
 	public Room() {
 	}
+	
+	public Room(Movie movie, )
 
 	// Gets and Setters:
 	public Movie getMovie() {

@@ -1,8 +1,5 @@
 package io.altar.CinemaTicketSystem.Models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -15,10 +12,9 @@ public class Schedule extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	private int inicioSesion; // Minutes
-	private int fimSession; // Minutes
-	private int pause; // Minutes
-	
+	private int sessionBegin; // Minutes
+	private int sessionENd; // Minutes
+		
 	
 	// Named Query:
 		public static final String GET_ALL_SCHEDULES_QUERY_NAME = "getAllSchedules";
@@ -28,36 +24,26 @@ public class Schedule extends BaseEntity {
 	public Schedule() {
 	}
 
-	public Schedule(int cinemaOpen, int cinemaClose, int pause) {
+	public Schedule(int sessionBegin, int sessionENd, int pause) {
 		super();
-		this.cinemaOpen = cinemaOpen;
-		this.cinemaClose = cinemaClose;
-		this.pause = pause;
+		this.sessionBegin = sessionBegin;
+		this.sessionENd = sessionENd;		
 	}
 
 	// Gets and Setters:
-	public int getCinemaOpen() {
-		return cinemaOpen;
+	public int getSessionBegin() {
+		return sessionBegin;
 	}
 
-	public void setCinemaOpen(int cinemaOpen) {
-		this.cinemaOpen = cinemaOpen;
+	public void setSessionBegin(int sessionBegin) {
+		this.sessionBegin = sessionBegin;
 	}
 
-	public int getCinemaClose() {
-		return cinemaClose;
+	public int getSessionENd() {
+		return sessionENd;
 	}
 
-	public void setCinemaClose(int cinemaClose) {
-		this.cinemaClose = cinemaClose;
+	public void setSessionENd(int sessionENd) {
+		this.sessionENd = sessionENd;
 	}
-
-	public int getPause() {
-		return pause;
-	}
-
-	public void setPause(int pause) {
-		this.pause = pause;
-	}
-
 }
