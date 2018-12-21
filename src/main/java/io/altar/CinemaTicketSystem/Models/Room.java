@@ -20,6 +20,7 @@ public class Room extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	// Attributes:
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Movie movie;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;

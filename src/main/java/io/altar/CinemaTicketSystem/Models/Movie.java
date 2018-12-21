@@ -1,10 +1,14 @@
 package io.altar.CinemaTicketSystem.Models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = Movie.GET_ALL_MOVIES_QUERY_NAME, query = "SELECT m FROM Movie m"),
@@ -24,6 +28,8 @@ public class Movie extends BaseEntity {
 	private String director;
 	private String cast;
 	private String synopsis;
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
+	private List<Room> rooms = new ArrayList<Room>();
 
 	// ________________________________________________________________________________________________
 
