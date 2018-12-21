@@ -23,6 +23,7 @@ public class Cinema extends BaseEntity {
 	private int timeOpen; // Minutes
 	private int timeClose; // Minutes
 	private int pause; // Minutes
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
 	private List<Room> rooms = new ArrayList<Room>();
 

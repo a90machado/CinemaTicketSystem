@@ -34,9 +34,10 @@ public class Schedule extends BaseEntity {
 	public Schedule() {
 	}
 
-	public Schedule(int sessionBegin, int sessionENd) {		
+	public Schedule(int sessionBegin, int sessionENd, Room room) {		
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionENd;	
+		this.room = room;
 	}
 
 	// ________________________________________________________________________________________________

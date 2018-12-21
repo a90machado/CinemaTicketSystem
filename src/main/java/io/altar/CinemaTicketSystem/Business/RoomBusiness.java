@@ -8,9 +8,9 @@ public class RoomBusiness extends EntityBusiness<RoomsRepository, Room> {
 
 	@Transactional
 	public Room create(Room room) {
-		repository.save(room);
+		room = repository.save(room);
 		room.createSchedule(room.getCinema(), room.getMovie());
-		room.getCinema().addRoom(room);
+		//room.getCinema().addRoom(room);
 		return room;
 	}
 }

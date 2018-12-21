@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.transaction.Transactional;
 
 @Entity
 @NamedQueries({ @NamedQuery(name = Room.GET_ALL_ROOMS_QUERY_NAME, query = "SELECT r FROM Room r"),
@@ -25,7 +26,7 @@ public class Room extends BaseEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;
 	private int totalSeats;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	List<Schedule> schedules = new ArrayList<Schedule>();
 
 	// ________________________________________________________________________________________________
@@ -77,6 +78,7 @@ public class Room extends BaseEntity {
 
 	// ________________________________________________________________________________________________
 	// Extra Methods
+
 	public void createSchedule(Cinema cinema, Movie movie) {
 		int openTime;
 		int numberOfSessions;
@@ -93,7 +95,7 @@ public class Room extends BaseEntity {
 
 		for (int i = 1; i < numberOfSessions; i++) {
 			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
-			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd);
+			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this);
 			schedules.add(newSchedule);
 			sessionBegin = sessionEnd;
 		}
