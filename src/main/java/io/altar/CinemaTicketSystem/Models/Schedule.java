@@ -63,7 +63,7 @@ public class Schedule extends BaseEntity {
 	}
 
 	public void setAvailableSeats(int availableSeats) {
-		this.availableSeats = availableSeats;
+		this.availableSeats = this.room.getTotalSeats();
 	}
 
 	public Room getRoom() {

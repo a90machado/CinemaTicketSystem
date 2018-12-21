@@ -7,3 +7,7 @@ import javax.ws.rs.core.Application;
 public class App extends Application {
 
 }
+
+// CINEMAS CRIA E ESTA TUDO BEM
+// MOVIES CRIA E ESTA TUDO BEM
+// 
