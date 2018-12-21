@@ -93,7 +93,8 @@ public class Room extends BaseEntity {
 
 		for (int i = 1; i < numberOfSessions; i++) {
 			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
-			schedules.add(new Schedule(sessionBegin, sessionEnd));
+			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd);
+			schedules.add(newSchedule);
 			sessionBegin = sessionEnd;
 		}
 
