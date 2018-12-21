@@ -12,18 +12,22 @@ import javax.persistence.MappedSuperclass;
 public abstract class BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-		// Attributes:
-		@Id
-		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		private long id;
+	// Attributes:
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-		// Gets and Setters:
-		public long getId() {
-			return id;
-		}
+	// ________________________________________________________________________________________________
 
-		public void setId(long id) {
-			this.id = id;
-		}
+	// Gets and Setters:
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	// ________________________________________________________________________________________________
 
 }
