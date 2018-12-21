@@ -83,7 +83,7 @@ public class Cinema extends BaseEntity {
 	// ________________________________________________________________________________________________
 
 	// Extra Methods
-	public void addRooms() {
+	public void addRoom() {
 		Room r = new Room();
 		this.rooms.add(r);
 	}
