@@ -6,6 +6,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import io.altar.CinemaTicketSystem.ModelsDto.ScheduleDTO;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = Schedule.GET_ALL_SCHEDULES_QUERY_NAME, query = "SELECT s FROM Schedule s"),
 		@NamedQuery(name = Schedule.DELETE_ALL_SCHEDULES_QUERY_NAME, query = "DELETE FROM Schedule") })
@@ -80,7 +82,11 @@ public class Schedule extends BaseEntity {
 	//Extra Methods
 	public void takeASeat() {
 		this.availableSeats--;
+	}	
+	
+	public ScheduleDTO turnToDTO(Schedule schedule) {
+		
+		return new ScheduleDTO(schedule.getSessionBegin(),schedule.getsessionEnd(),schedule.getAvailableSeats(),schedule.getRoom().getMovie().getTitle());
 	}
-	
-	
+
 }

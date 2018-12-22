@@ -1,28 +1,19 @@
-package io.altar.CinemaTicketSystem.Models;
+package io.altar.CinemaTicketSystem.ModelsDto;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
-import io.altar.CinemaTicketSystem.ModelsDto.MovieDTO;
-import io.altar.CinemaTicketSystem.ModelsDto.RoomDTO;
-import io.altar.CinemaTicketSystem.ModelsDto.ScheduleDTO;
+import io.altar.CinemaTicketSystem.Models.Room;
 
-@Entity
-@NamedQueries({ @NamedQuery(name = Movie.GET_ALL_MOVIES_QUERY_NAME, query = "SELECT m FROM Movie m"),
-		@NamedQuery(name = Movie.DELETE_ALL_MOVIES_QUERY_NAME, query = "DELETE FROM Movie") })
-// ________________________________________________________________________________________________
-
-public class Movie extends BaseEntity {
+public class MovieDTO {
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
+	
 	private String title;
 	private String image;
 	private int minimumAge;
@@ -32,24 +23,30 @@ public class Movie extends BaseEntity {
 	private String director;
 	private String cast;
 	private String synopsis;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
-	private List<Room> rooms = new ArrayList<Room>();
+	private List<RoomDTO> rooms = new ArrayList<RoomDTO>();
 
 	// ________________________________________________________________________________________________
-
-	// NamedQuerys
-	public static final String GET_ALL_MOVIES_QUERY_NAME = "getAllMovies";
-	public static final String DELETE_ALL_MOVIES_QUERY_NAME = "deleteAllMovies";
-
-	// ________________________________________________________________________________________________
-
+	
 	// Constructor
-	public Movie() {
+	
+	public MovieDTO(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate,
+			String director, String cast, String synopsis, List<RoomDTO> rooms) {
+		super();
+		this.title = title;
+		this.image = image;
+		this.minimumAge = minimumAge;
+		this.duration = duration;
+		this.releaseDate = releaseDate;
+		this.endDate = endDate;
+		this.director = director;
+		this.cast = cast;
+		this.synopsis = synopsis;
+		this.rooms = rooms;
 	}
-
 	// ________________________________________________________________________________________________
-
-	// Get and Setters:
+	
+	// Get and setters
+	
 	public String getTitle() {
 		return title;
 	}
@@ -121,25 +118,13 @@ public class Movie extends BaseEntity {
 	public void setSynopsis(String synopsis) {
 		this.synopsis = synopsis;
 	}
-	
-	public List<Room> getRooms() {
+
+	public List<RoomDTO> getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(List<Room> rooms) {
+	public void setRooms(List<RoomDTO> rooms) {
 		this.rooms = rooms;
 	}
-	// ________________________________________________________________________________________________
 	
-	// Extra Methods
-	
-	public MovieDTO turnToDTO(Movie movie) {
-		List<RoomDTO> roomsDTO = new ArrayList<RoomDTO>();
-
-		for (Room room: movie.getRooms()) {
-			roomsDTO.add(room.turnToDTO(room));
-		}
-		return new MovieDTO(movie.getTitle(),movie.getImage(),movie.getMinimumAge(),movie.getDuration(),movie.getReleaseDate(),movie.getEndDate(),movie.getDirector(),movie.getCast(),movie.getSynopsis(),roomsDTO);
-		}
-
 }
