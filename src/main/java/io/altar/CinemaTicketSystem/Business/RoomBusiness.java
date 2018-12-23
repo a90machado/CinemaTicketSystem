@@ -23,7 +23,7 @@ public class RoomBusiness extends EntityBusiness<RoomsRepository, Room> {
 		List<RoomDTO> roomsDTO=new ArrayList<>();
 
 		for (Room room :rooms) {
-			room.turnToDTO(room);
+			roomsDTO.add(room.turnToDTO(room));
 		}
 		return roomsDTO;	
 	}
