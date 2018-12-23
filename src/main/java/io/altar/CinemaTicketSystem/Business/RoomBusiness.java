@@ -10,7 +10,7 @@ public class RoomBusiness extends EntityBusiness<RoomsRepository, Room> {
 	public Room create(Room room) {
 		room = repository.save(room);
 		room.createSchedule(room.getCinema(), room.getMovie());
-		//room.getCinema().addRoom(room);
+		room.getCinema().addRoom(room);
 		return room;
 	}
 }

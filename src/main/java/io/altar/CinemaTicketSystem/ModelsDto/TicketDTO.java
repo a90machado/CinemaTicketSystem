@@ -1,8 +1,9 @@
 package io.altar.CinemaTicketSystem.ModelsDto;
 
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Models.Room;
 
-	public class TicketDTO {
+	public class TicketDTO extends BaseEntity{
 		private static final long serialVersionUID = 1L;
 
 		// Attributes

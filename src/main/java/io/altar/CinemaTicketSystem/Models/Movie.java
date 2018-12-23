@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
@@ -32,7 +33,7 @@ public class Movie extends BaseEntity {
 	private String director;
 	private String cast;
 	private String synopsis;
-	@OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Room> rooms = new ArrayList<Room>();
 
 	// ________________________________________________________________________________________________

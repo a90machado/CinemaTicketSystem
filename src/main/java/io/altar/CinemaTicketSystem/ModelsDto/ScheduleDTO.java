@@ -1,10 +1,11 @@
 package io.altar.CinemaTicketSystem.ModelsDto;
 
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Models.Cinema;
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.Models.Schedule;
 
-public class ScheduleDTO {
+public class ScheduleDTO extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	
 	//Attributes

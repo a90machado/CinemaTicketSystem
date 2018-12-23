@@ -7,9 +7,10 @@ import java.util.List;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Models.Room;
 
-public class MovieDTO {
+public class MovieDTO extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	// Attributes

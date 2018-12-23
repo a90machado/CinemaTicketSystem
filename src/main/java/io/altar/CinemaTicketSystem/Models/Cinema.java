@@ -3,6 +3,7 @@ package io.altar.CinemaTicketSystem.Models;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.NamedQueries;
@@ -28,7 +29,7 @@ public class Cinema extends BaseEntity {
 	private int timeClose; // Minutes
 	private int pause; // Minutes
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema", cascade = CascadeType.ALL)
 	private List<Room> rooms = new ArrayList<Room>();
 
 	// ________________________________________________________________________________________________

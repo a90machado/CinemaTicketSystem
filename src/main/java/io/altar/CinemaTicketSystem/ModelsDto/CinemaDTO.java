@@ -3,11 +3,12 @@ package io.altar.CinemaTicketSystem.ModelsDto;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Models.Cinema;
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.Models.Schedule;
 
-public class CinemaDTO{
+public class CinemaDTO extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 	
 	// Attributes
