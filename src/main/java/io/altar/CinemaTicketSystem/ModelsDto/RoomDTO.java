@@ -14,17 +14,18 @@ public class RoomDTO extends BaseEntity{
 	
 	private String cinemaName;
 	private int totalSeats;
-	private List<ScheduleDTO> schedules = new ArrayList<ScheduleDTO>();
+	private String movie;
 	
 	// ________________________________________________________________________________________________
 	
 	// Constructor
 	
-	public RoomDTO(String cinemaName, int totalSeats, List<ScheduleDTO> schedules) {
+	public RoomDTO(String cinemaName, int totalSeats, String movie) {
 		super();
 		this.cinemaName = cinemaName;
 		this.totalSeats = totalSeats;
-		this.schedules = schedules;
+		this.movie = movie;
+
 	}
 	// ________________________________________________________________________________________________
 	
@@ -46,12 +47,12 @@ public class RoomDTO extends BaseEntity{
 		this.totalSeats = totalSeats;
 	}
 
-	public List<ScheduleDTO> getSchedules() {
-		return schedules;
+	public String getMovie() {
+		return movie;
 	}
 
-	public void setSchedules(List<ScheduleDTO> schedules) {
-		this.schedules = schedules;
+	public void setMovie(String movie) {
+		this.movie = movie;
 	}
-	
+
 }

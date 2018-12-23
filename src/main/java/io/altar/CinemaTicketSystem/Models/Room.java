@@ -29,7 +29,7 @@ public class Room extends BaseEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;
 	private int totalSeats;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "room", cascade = CascadeType.ALL)
 	List<Schedule> schedules = new ArrayList<Schedule>();
 
 	// ________________________________________________________________________________________________
@@ -106,12 +106,8 @@ public class Room extends BaseEntity {
 	}
 	
 	public RoomDTO turnToDTO(Room room) {
-		List<ScheduleDTO> schedulesDTO = new ArrayList<ScheduleDTO>();
 
-		for (Schedule schedule: room.getSchedules()) {
-			schedulesDTO.add(schedule.turnToDTO(schedule));
-		}
-		return new RoomDTO(room.getCinema().getName(),room.getTotalSeats(),schedulesDTO);
+		return new RoomDTO(room.getCinema().getName(),room.getTotalSeats(), room.getMovie().getTitle());
 		}
 
 	// ________________________________________________________________________________________________

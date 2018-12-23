@@ -1,7 +1,5 @@
 package io.altar.CinemaTicketSystem.Business;
 
-import java.util.List;
-
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -24,12 +22,8 @@ public abstract class EntityBusiness<T extends EntityRepository<R>, R extends Ba
 	}
 
 	@Transactional
-	public R create(R entity) {
-		return repository.save(entity);
-	}
-
-	public List<R> getAll() {
-		return repository.getAll();
+	public void create(R entity) {
+		repository.save(entity);
 	}
 
 	public R findById(long id) {

@@ -23,18 +23,13 @@ public abstract class EntityServices<R extends EntityBusiness<S, T>, S extends E
 	@Inject
 	protected R business;
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
-	public List<T> getAll() {
-		return business.getAll();
-	}
-
 	@POST
 	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public T create(T entity) {
-		return business.create(entity);
+	public String create(T entity) {
+		business.create(entity);
+		return "Entity created";
 	}
 
 	@GET
