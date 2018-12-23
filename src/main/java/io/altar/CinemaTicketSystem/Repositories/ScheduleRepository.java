@@ -1,8 +1,9 @@
 package io.altar.CinemaTicketSystem.Repositories;
 
 import io.altar.CinemaTicketSystem.Models.Schedule;
+import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
 
-public class ScheduleRepository extends EntityRepository<Schedule>{
+public class ScheduleRepository extends EntityRepository<Schedule, ScheduleDTO>{
 
 	private static final ScheduleRepository INSTANCE = new ScheduleRepository();
 
@@ -15,6 +16,10 @@ public class ScheduleRepository extends EntityRepository<Schedule>{
 
 	protected Class<Schedule> getEntityClass() {
 		return Schedule.class;
+	}
+	
+	protected Class<ScheduleDTO> getEntityClassDTO() {
+		return ScheduleDTO.class;
 	}
 
 	protected String getAllEntityQueryName() {

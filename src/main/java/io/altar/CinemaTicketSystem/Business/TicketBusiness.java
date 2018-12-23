@@ -1,9 +1,10 @@
 package io.altar.CinemaTicketSystem.Business;
 
 import io.altar.CinemaTicketSystem.Models.Ticket;
+import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 import io.altar.CinemaTicketSystem.Repositories.TicketsRepository;
 
 
-public class TicketBusiness extends EntityBusiness<TicketsRepository, Ticket> {
+public class TicketBusiness extends EntityBusiness<TicketsRepository, Ticket, TicketDTO> {
 
 }

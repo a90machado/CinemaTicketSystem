@@ -18,11 +18,11 @@ import io.altar.CinemaTicketSystem.Business.EntityBusiness;
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
 import io.altar.CinemaTicketSystem.Repositories.EntityRepository;
 
-public abstract class EntityServices<R extends EntityBusiness<S, T>, S extends EntityRepository<T>, T extends BaseEntity> {
+public abstract class EntityServices<R extends EntityBusiness<S, T, D>, S extends EntityRepository<T,D>, T,D extends BaseEntity> {
 
 	@Inject
 	protected R business;
-
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<T> getAll() {
@@ -33,7 +33,7 @@ public abstract class EntityServices<R extends EntityBusiness<S, T>, S extends E
 	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public T create(T entity) {
+	public D create(T entity) {		
 		return business.create(entity);
 	}
 

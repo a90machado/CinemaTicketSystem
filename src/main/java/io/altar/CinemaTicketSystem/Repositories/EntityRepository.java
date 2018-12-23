@@ -7,12 +7,14 @@ import javax.persistence.PersistenceContext;
 
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
 
-public abstract class EntityRepository <T extends BaseEntity> {
+public abstract class EntityRepository <T, D extends BaseEntity> {
 	
 	@PersistenceContext
 	protected EntityManager entityManager;
 
 	protected abstract Class<T> getEntityClass();
+	
+	protected abstract Class<D> getEntityClassDTO();
 
 	protected abstract String getAllEntityQueryName();
 

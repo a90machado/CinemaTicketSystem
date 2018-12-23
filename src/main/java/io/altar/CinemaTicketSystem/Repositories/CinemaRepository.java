@@ -1,9 +1,10 @@
 package io.altar.CinemaTicketSystem.Repositories;
 
 import io.altar.CinemaTicketSystem.Models.Cinema;
+import io.altar.CinemaTicketSystem.ModelsDTO.CinemaDTO;
 
 
-public class CinemaRepository extends EntityRepository<Cinema>{
+public class CinemaRepository extends EntityRepository<Cinema,CinemaDTO>{
 	
 	private static final CinemaRepository INSTANCE = new CinemaRepository();
 
@@ -16,6 +17,10 @@ public class CinemaRepository extends EntityRepository<Cinema>{
 
 	protected Class<Cinema> getEntityClass() {
 		return Cinema.class;
+	}
+	
+	protected Class<CinemaDTO> getEntityClassDTO() {
+		return CinemaDTO.class;
 	}
 
 	protected String getAllEntityQueryName() {
