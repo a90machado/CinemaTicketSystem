@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
+import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = Ticket.GET_ALL_TICKETS_QUERY_NAME, query = "SELECT t FROM Ticket t"),
 		@NamedQuery(name = Ticket.DELETE_ALL_TICKETS_QUERY_NAME, query = "DELETE FROM Ticket") })
@@ -57,5 +59,11 @@ public class Ticket extends BaseEntity {
 	}
 
 	// ________________________________________________________________________________________________
+	
+	//Extra Methods
+	
+	public TicketDTO turnToDTO(Ticket ticket) {
 
+		return new TicketDTO(ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket(),ticket.getPrice());
+		}
 }

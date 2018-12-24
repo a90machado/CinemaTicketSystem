@@ -1,5 +1,6 @@
 package io.altar.CinemaTicketSystem.Business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,6 +8,9 @@ import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.Models.Cinema;
 import io.altar.CinemaTicketSystem.Models.Movie;
+import io.altar.CinemaTicketSystem.Models.Ticket;
+import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
+import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
 import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
 
@@ -30,11 +34,17 @@ public class MovieBusiness{
 		return moviesRepository.save(movie);
 	}
 
-	public List<Movie> getAll() {
-		return moviesRepository.getAll();
+	public List<MovieDTO> getAll() {
+		List<Movie> movies = moviesRepository.getAll();
+		List<MovieDTO> moviesDTO = new ArrayList<MovieDTO>();
+		
+		for (Movie movie: movies) {
+			moviesDTO.add(movie.turnToDTO(movie));
+		}
+		return moviesDTO;
 	}
 
-	public Movie findById(long id) {
-		return moviesRepository.getById(id);
+	public MovieDTO findById(long id) {
+		return moviesRepository.getById(id).turnToDTO(moviesRepository.getById(id));
 	}
 }

@@ -7,17 +7,17 @@ private static final long serialVersionUID = 1L;
 	private int sessionBegin; // Minutes
 	private int sessionEnd; // Minutes
 	private int availableSeats;
-	private String nameOfMovie;
+	private RoomDTO roomDTO;
 	
 	// ________________________________________________________________________________________________
 
 	// Constructor
-	public ScheduleDTO(int sessionBegin, int sessionEnd, int availableSeats, String nameOfMovie) {
+	public ScheduleDTO(int sessionBegin, int sessionEnd, int availableSeats, RoomDTO roomDTO) {
 		super();
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionEnd;
 		this.availableSeats = availableSeats;
-		this.nameOfMovie = nameOfMovie;
+		this.roomDTO = roomDTO;
 	}
 	// ________________________________________________________________________________________________
 
@@ -46,13 +46,15 @@ private static final long serialVersionUID = 1L;
 		this.availableSeats = availableSeats;
 	}
 
-	public String getNameOfMovie() {
-		return nameOfMovie;
+	public RoomDTO getRoomDTO() {
+		return roomDTO;
 	}
 
-	public void setNameOfMovie(String nameOfMovie) {
-		this.nameOfMovie = nameOfMovie;
+	public void setRoomDTO(RoomDTO roomDTO) {
+		this.roomDTO = roomDTO;
 	}
+
+	
 	// ________________________________________________________________________________________________
 
 

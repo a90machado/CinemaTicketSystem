@@ -10,6 +10,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = Movie.GET_ALL_MOVIES_QUERY_NAME, query = "SELECT m FROM Movie m"),
 		@NamedQuery(name = Movie.DELETE_ALL_MOVIES_QUERY_NAME, query = "DELETE FROM Movie") })
@@ -119,4 +121,11 @@ public class Movie extends BaseEntity {
 	}
 
 	// ________________________________________________________________________________________________
+	
+	// Extra Methods
+	
+	public MovieDTO turnToDTO(Movie movie) {
+
+		return new MovieDTO(movie.getTitle(),movie.getImage(),movie.getMinimumAge(),movie.getDuration(),movie.getReleaseDate(),movie.getEndDate(),movie.getDirector(),movie.getCast(),movie.getSynopsis());
+		}
 }

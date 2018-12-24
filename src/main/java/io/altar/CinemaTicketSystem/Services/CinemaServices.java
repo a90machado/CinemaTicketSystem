@@ -4,6 +4,7 @@ import javax.ws.rs.Path;
 
 import io.altar.CinemaTicketSystem.Business.CinemaBusiness;
 import io.altar.CinemaTicketSystem.Models.Cinema;
+import io.altar.CinemaTicketSystem.ModelsDTO.CinemaDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("cinema")
 public class CinemaServices {
@@ -25,13 +27,13 @@ public class CinemaServices {
 	CinemaBusiness cinemaBusiness;
 	
 	@POST
+	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public void create(Cinema cinema) {
 		cinemaBusiness.create(cinema);
 	}
 	@GET
-	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CinemaDTO> consult() {
 		return cinemaBusiness.getAll();
@@ -45,12 +47,11 @@ public class CinemaServices {
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String delete(@PathParam("id") long id) {
+	public Response delete(@PathParam("id") long id) {
 		cinemaBusiness.delete(id);
-		return "Cinema deleted";
+		return Response.ok().build();
 	}
 	@PUT
-	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public void update(Cinema cinema) {
 		cinemaBusiness.update(cinema);

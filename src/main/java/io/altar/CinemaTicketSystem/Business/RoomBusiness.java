@@ -1,5 +1,6 @@
 package io.altar.CinemaTicketSystem.Business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,6 +8,9 @@ import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.Models.Ticket;
+import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
+import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
@@ -21,24 +25,33 @@ public class RoomBusiness {
 	}
 
 	@Transactional
-	public Room update(Room room) {
-		return roomsRepository.update(room);
+	public RoomDTO update(Room room) {
+		room = roomsRepository.update(room);
+		return room.turnToDTO(room);
+
 	}
 
 	@Transactional
-	public Room create(Room room) {
+	public RoomDTO create(Room room) {
 		room = roomsRepository.save(room);
 		room.createSchedule(room.getCinema(), room.getMovie());
 		//room.getCinema().addRoom(room);
-		return room;
+		return room.turnToDTO(room);
 	}
 
-	public List<Room> getAll() {
-		return roomsRepository.getAll();
+	public List<RoomDTO> getAll() {
+		
+		List<Room> rooms = roomsRepository.getAll();
+		List<RoomDTO> roomsDTO = new ArrayList<RoomDTO>();
+		
+		for (Room room: rooms) {
+			roomsDTO.add(room.turnToDTO(room));
+		}
+		return roomsDTO;
 	}
 
-	public Room findById(long id) {
-		return roomsRepository.getById(id);
+	public RoomDTO findById(long id) {
+		return roomsRepository.getById(id).turnToDTO(roomsRepository.getById(id));
 	}
 
 	

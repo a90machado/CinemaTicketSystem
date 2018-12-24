@@ -1,17 +1,17 @@
 package io.altar.CinemaTicketSystem.Business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Ticket;
-import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
+import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 import io.altar.CinemaTicketSystem.Repositories.TicketsRepository;
 
 
-public class TicketBusiness extends EntityBusiness<TicketsRepository, Ticket> {
+public class TicketBusiness {
 	
 	@Inject
 	protected TicketsRepository ticketsRepository;
@@ -31,12 +31,19 @@ public class TicketBusiness extends EntityBusiness<TicketsRepository, Ticket> {
 		return ticketsRepository.save(ticket);
 	}
 
-	public List<Ticket> getAll() {
-		return ticketsRepository.getAll();
+	public List<TicketDTO> getAll() {
+		
+		List<Ticket> tickets = ticketsRepository.getAll();
+		List<TicketDTO> ticketsDTO = new ArrayList<TicketDTO>();
+		
+		for (Ticket ticket: tickets) {
+			ticketsDTO.add(ticket.turnToDTO(ticket));
+		}
+		return ticketsDTO;
 	}
 
-	public Ticket findById(long id) {
-		return ticketsRepository.getById(id);
+	public TicketDTO findById(long id) {
+		return ticketsRepository.getById(id).turnToDTO(ticketsRepository.getById(id));
 	}
 
 }

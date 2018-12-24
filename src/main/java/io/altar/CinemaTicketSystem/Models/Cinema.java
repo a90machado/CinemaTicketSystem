@@ -9,6 +9,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import io.altar.CinemaTicketSystem.ModelsDTO.CinemaDTO;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = Cinema.GET_ALL_CINEMAS_QUERY_NAME, query = "SELECT c FROM Cinema c"),
 		@NamedQuery(name = Cinema.DELETE_ALL_CINEMAS_QUERY_NAME, query = "DELETE FROM Cinema") })
@@ -87,4 +89,9 @@ public class Cinema extends BaseEntity {
 	public void addRoom(Room room) {
 		this.rooms.add(room);
 	}
+	
+	public CinemaDTO turnToDTO(Cinema cinema) {
+
+		return new CinemaDTO(cinema.getName(),cinema.getTimeOpen(),cinema.getTimeClose(),cinema.getPause());
+		}
 }

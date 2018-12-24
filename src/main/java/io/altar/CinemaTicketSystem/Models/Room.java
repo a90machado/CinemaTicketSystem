@@ -12,6 +12,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.transaction.Transactional;
 
+import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
+
 @Entity
 @NamedQueries({ @NamedQuery(name = Room.GET_ALL_ROOMS_QUERY_NAME, query = "SELECT r FROM Room r"),
 		@NamedQuery(name = Room.DELETE_ALL_ROOMS_QUERY_NAME, query = "DELETE FROM Room") })
@@ -101,6 +103,11 @@ public class Room extends BaseEntity {
 		}
 
 	}
+	
+	public RoomDTO turnToDTO(Room room) {
+
+		return new RoomDTO(room.getCinema().turnToDTO(cinema),room.getTotalSeats(), room.getMovie().turnToDTO(room.getMovie()));
+		}
 
 	// ________________________________________________________________________________________________
 }

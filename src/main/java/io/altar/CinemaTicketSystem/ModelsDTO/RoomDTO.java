@@ -5,31 +5,31 @@ private static final long serialVersionUID = 1L;
 	
 	// Attributes
 	
-	private String cinemaName;
+	private CinemaDTO cinemaDTO;
 	private int totalSeats;
-	private String movie;
+	private MovieDTO movieDTO;
 	
 	// ________________________________________________________________________________________________
 	
 	// Constructor
 	
-	public RoomDTO(String cinemaName, int totalSeats, String movie) {
+	public RoomDTO(CinemaDTO cinemaDTO, int totalSeats, MovieDTO movieDTO) {
 		super();
-		this.cinemaName = cinemaName;
+		this.cinemaDTO = cinemaDTO;
 		this.totalSeats = totalSeats;
-		this.movie = movie;
+		this.movieDTO = movieDTO;
 
 	}
 	// ________________________________________________________________________________________________
 	
 	// Get and setters
 
-	public String getCinemaName() {
-		return cinemaName;
+	public CinemaDTO getCinema() {
+		return cinemaDTO;
 	}
 
-	public void setCinemaName(String cinemaName) {
-		this.cinemaName = cinemaName;
+	public void setCinema(CinemaDTO cinemaDTO) {
+		this.cinemaDTO = cinemaDTO;
 	}
 
 	public int getTotalSeats() {
@@ -40,12 +40,12 @@ private static final long serialVersionUID = 1L;
 		this.totalSeats = totalSeats;
 	}
 
-	public String getMovie() {
-		return movie;
+	public MovieDTO getMovie() {
+		return movieDTO;
 	}
 
-	public void setMovie(String movie) {
-		this.movie = movie;
+	public void setMovie(MovieDTO movie) {
+		this.movieDTO = movie;
 	}
 
 }

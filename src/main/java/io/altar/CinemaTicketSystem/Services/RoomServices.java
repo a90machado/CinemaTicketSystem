@@ -12,11 +12,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import io.altar.CinemaTicketSystem.Business.MovieBusiness;
 import io.altar.CinemaTicketSystem.Business.RoomBusiness;
 import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
 @Path("room")
@@ -26,13 +28,13 @@ public class RoomServices {
 	RoomBusiness roomBusiness;
 	
 	@POST
+	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public void create(Room room) {
 		roomBusiness.create(room);
 	}
 	@GET
-	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<RoomDTO> getAll() {
 		return roomBusiness.getAll();
@@ -46,12 +48,12 @@ public class RoomServices {
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public String delete(@PathParam("id") long id) {
+	public Response delete(@PathParam("id") long id) {
 		roomBusiness.delete(id);
-		return "Room deleted";
+		return Response.ok().build();
 	}
+	
 	@PUT
-	@Path("/")
 	@Produces(MediaType.APPLICATION_JSON)
 	public void update(Room room) {
 		roomBusiness.update(room);

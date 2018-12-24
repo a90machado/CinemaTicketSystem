@@ -12,11 +12,13 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import io.altar.CinemaTicketSystem.Business.CinemaBusiness;
 import io.altar.CinemaTicketSystem.Business.MovieBusiness;
 import io.altar.CinemaTicketSystem.Models.Cinema;
 import io.altar.CinemaTicketSystem.Models.Movie;
+import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
 
 @Path("movie")
@@ -26,13 +28,13 @@ public class MovieServices {
 		MovieBusiness movieBusiness;
 		
 		@POST
+		@Path("new")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
 		public void create(Movie movie) {
 			movieBusiness.create(movie);
 		}
 		@GET
-		@Path("/")
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<MovieDTO> getAll() {
 			return movieBusiness.getAll();
@@ -46,12 +48,11 @@ public class MovieServices {
 		@DELETE
 		@Path("/{id}")
 		@Produces(MediaType.APPLICATION_JSON)
-		public String delete(@PathParam("id") long id) {
+		public Response delete(@PathParam("id") long id) {
 			movieBusiness.delete(id);
-			return "Movie deleted";
+			return Response.ok().build();
 		}
 		@PUT
-		@Path("/")
 		@Produces(MediaType.APPLICATION_JSON)
 		public void update(Movie movie) {
 			movieBusiness.update(movie);
