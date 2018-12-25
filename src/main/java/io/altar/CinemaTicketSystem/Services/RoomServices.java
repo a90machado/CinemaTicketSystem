@@ -14,12 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import io.altar.CinemaTicketSystem.Business.MovieBusiness;
 import io.altar.CinemaTicketSystem.Business.RoomBusiness;
-import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
-import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
 @Path("room")
 public class RoomServices {

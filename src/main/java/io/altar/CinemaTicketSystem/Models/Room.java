@@ -10,7 +10,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 
@@ -85,7 +84,7 @@ public class Room extends BaseEntity {
 		int openTime;
 		int numberOfSessions;
 		int sessionBegin = cinema.getTimeOpen();
-		int sessionEnd = 0;
+		int sessionEnd = cinema.getTimeOpen()+ movie.getDuration() + cinema.getPause();
 
 		if (cinema.getTimeClose() < cinema.getTimeOpen()) {
 			openTime = ((24 * 60) - cinema.getTimeOpen()) + cinema.getTimeClose();
@@ -97,7 +96,7 @@ public class Room extends BaseEntity {
 
 		for (int i = 1; i < numberOfSessions; i++) {
 			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
-			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this);
+			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this, this.getTotalSeats());
 			schedules.add(newSchedule);
 			sessionBegin = sessionEnd;
 		}

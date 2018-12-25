@@ -14,12 +14,9 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import io.altar.CinemaTicketSystem.Business.ScheduleBusiness;
 import io.altar.CinemaTicketSystem.Business.TicketBusiness;
-import io.altar.CinemaTicketSystem.Models.Schedule;
 import io.altar.CinemaTicketSystem.Models.Ticket;
 import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
-import io.altar.CinemaTicketSystem.Repositories.TicketsRepository;
 
 @Path("ticket")
 public class TicketServices{

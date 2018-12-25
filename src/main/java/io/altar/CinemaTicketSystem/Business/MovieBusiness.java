@@ -6,12 +6,8 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import io.altar.CinemaTicketSystem.Models.Cinema;
 import io.altar.CinemaTicketSystem.Models.Movie;
-import io.altar.CinemaTicketSystem.Models.Ticket;
 import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
-import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
-import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
 import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
 
 public class MovieBusiness{

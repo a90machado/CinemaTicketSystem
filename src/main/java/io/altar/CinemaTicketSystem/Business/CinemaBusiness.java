@@ -7,9 +7,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.Models.Cinema;
-import io.altar.CinemaTicketSystem.Models.Ticket;
 import io.altar.CinemaTicketSystem.ModelsDTO.CinemaDTO;
-import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
 
 public class CinemaBusiness{

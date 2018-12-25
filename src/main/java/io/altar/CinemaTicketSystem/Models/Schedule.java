@@ -36,10 +36,11 @@ public class Schedule extends BaseEntity {
 	public Schedule() {
 	}
 
-	public Schedule(int sessionBegin, int sessionENd, Room room) {		
+	public Schedule(int sessionBegin, int sessionENd, Room room, int availableSeats) {		
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionENd;	
 		this.room = room;
+		this.availableSeats=availableSeats;
 	}
 
 	// ________________________________________________________________________________________________
@@ -67,7 +68,7 @@ public class Schedule extends BaseEntity {
 	}
 
 	public void setAvailableSeats(int availableSeats) {
-		this.availableSeats = this.room.getTotalSeats();
+		this.availableSeats = this.getRoom().getTotalSeats();
 	}
 
 	public Room getRoom() {
