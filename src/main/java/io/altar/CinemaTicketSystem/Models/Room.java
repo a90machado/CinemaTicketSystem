@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -26,7 +27,12 @@ public class Room extends BaseEntity {
 	private Movie movie;
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Cinema cinema;
+	private int numberOfQueues;
+	private int numberOfSeatsPerQueue;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="room")
+	private List<Queue> structure = new ArrayList<Queue>();
 	private int totalSeats;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	List<Schedule> schedules = new ArrayList<Schedule>();
 
@@ -76,9 +82,38 @@ public class Room extends BaseEntity {
 	public void setSchedules(List<Schedule> schedules) {
 		this.schedules = schedules;
 	}
+	
+
+	public int getNumberOfQueues() {
+		return numberOfQueues;
+	}
+
+	public void setNumberOfQueues(int numberOfQueues) {
+		this.numberOfQueues = numberOfQueues;
+	}
+
+	public int getNumberOfSeatsPerQueue() {
+		return numberOfSeatsPerQueue;
+	}
+
+	public void setNumberOfSeatsPerQueue(int numberOfSeatsPerQueue) {
+		this.numberOfSeatsPerQueue = numberOfSeatsPerQueue;
+	}
+
+	public List<Queue> getStructure() {
+		return structure;
+	}
+
+	public void setStructure(List<Queue> structure) {
+		this.structure = structure;
+	}
 
 	// ________________________________________________________________________________________________
 	// Extra Methods
+
+	public void chooseSeat(Boolean structure[][], int queue, int seat){
+		structure[queue][seat] = true;
+	}
 
 	public void createSchedule(Cinema cinema, Movie movie) {
 		int openTime;

@@ -6,14 +6,18 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import io.altar.CinemaTicketSystem.Models.Queue;
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
+import io.altar.CinemaTicketSystem.Repositories.QueueRepository;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
 public class RoomBusiness {
 	
 	@Inject
 	protected RoomsRepository roomsRepository;
+	@Inject
+	protected QueueRepository queueRepository;
 
 	@Transactional
 	public void delete(long id) {
@@ -31,7 +35,13 @@ public class RoomBusiness {
 	public RoomDTO create(Room room) {
 		room = roomsRepository.save(room);
 		room.createSchedule(room.getCinema(), room.getMovie());
-		//room.getCinema().addRoom(room);
+		for (int i = 0; i < room.getNumberOfQueues(); i++) {
+			Queue queue = new Queue();
+			queue.setRoom(room);
+			queue.setSeats();
+			queueRepository.save(queue);
+			room.getStructure().add(queue);
+		}
 		return room.turnToDTO(room);
 	}
 
