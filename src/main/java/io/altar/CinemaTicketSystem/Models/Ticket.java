@@ -1,6 +1,8 @@
 package io.altar.CinemaTicketSystem.Models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -15,6 +17,7 @@ public class Ticket extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
 	private String typeOfTicket;
 	private double price;
