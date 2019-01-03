@@ -126,6 +126,6 @@ public class Movie extends BaseEntity {
 	
 	public MovieDTO turnToDTO(Movie movie) {
 
-		return new MovieDTO(movie.getTitle(),movie.getImage(),movie.getMinimumAge(),movie.getDuration(),movie.getReleaseDate(),movie.getEndDate(),movie.getDirector(),movie.getCast(),movie.getSynopsis());
+		return new MovieDTO(movie.getId(),movie.getTitle(),movie.getImage(),movie.getMinimumAge(),movie.getDuration(),movie.getReleaseDate(),movie.getEndDate(),movie.getDirector(),movie.getCast(),movie.getSynopsis());
 		}
 }

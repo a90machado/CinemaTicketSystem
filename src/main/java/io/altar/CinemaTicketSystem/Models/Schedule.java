@@ -88,7 +88,7 @@ public class Schedule extends BaseEntity {
 	
 	public ScheduleDTO turnToDTO(Schedule schedule) {
 		
-		return new ScheduleDTO(schedule.getSessionBegin(),schedule.getsessionEnd(),schedule.getAvailableSeats(),schedule.getRoom().turnToDTO(schedule.getRoom()));
+		return new ScheduleDTO(schedule.getId(),schedule.getSessionBegin(),schedule.getsessionEnd(),schedule.getAvailableSeats(),schedule.getRoom().turnToDTO(schedule.getRoom()));
 	}
 	
 }

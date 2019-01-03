@@ -1,6 +1,8 @@
 package io.altar.CinemaTicketSystem.ModelsDTO;
 
-public class CinemaDTO {
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
+
+public class CinemaDTO extends BaseEntity{
 private static final long serialVersionUID = 1L;
 	
 	// Attributes
@@ -12,8 +14,9 @@ private static final long serialVersionUID = 1L;
 	// ________________________________________________________________________________________________
 	
 	// Constructor
-		public CinemaDTO(String name, int timeOpen, int timeClose, int pause) {
+		public CinemaDTO(long id, String name, int timeOpen, int timeClose, int pause) {
 			super();
+			this.setId(id);
 			this.name = name;
 			this.timeOpen = timeOpen;
 			this.timeClose = timeClose;

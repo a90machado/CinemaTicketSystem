@@ -60,7 +60,7 @@ public class Queue extends BaseEntity{
 	
 	public QueueDTO turnToDTO(Queue queue) {
 
-		return new QueueDTO(queue.getRoom().turnToDTO(queue.getRoom()),queue.getSeats());
+		return new QueueDTO(queue.getId(),queue.getRoom().turnToDTO(queue.getRoom()),queue.getSeats());
 		}
 
 	

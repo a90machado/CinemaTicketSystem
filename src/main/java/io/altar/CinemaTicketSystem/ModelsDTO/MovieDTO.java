@@ -1,7 +1,9 @@
 package io.altar.CinemaTicketSystem.ModelsDTO;
 import java.util.Date;
 
-public class MovieDTO {
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
+
+public class MovieDTO extends BaseEntity{
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
@@ -20,9 +22,10 @@ public class MovieDTO {
 	
 	// Constructor
 	
-	public MovieDTO(String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate,
+	public MovieDTO(long id, String title, String image, int minimumAge, int duration, Date releaseDate, Date endDate,
 			String director, String cast, String synopsis) {
 		super();
+		this.setId(id);
 		this.title = title;
 		this.image = image;
 		this.minimumAge = minimumAge;

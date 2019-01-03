@@ -67,6 +67,6 @@ public class Ticket extends BaseEntity {
 	
 	public TicketDTO turnToDTO(Ticket ticket) {
 
-		return new TicketDTO(ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket(),ticket.getPrice());
+		return new TicketDTO(ticket.getId(),ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket(),ticket.getPrice());
 		}
 }

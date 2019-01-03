@@ -92,6 +92,6 @@ public class Cinema extends BaseEntity {
 	
 	public CinemaDTO turnToDTO(Cinema cinema) {
 
-		return new CinemaDTO(cinema.getName(),cinema.getTimeOpen(),cinema.getTimeClose(),cinema.getPause());
+		return new CinemaDTO(cinema.getId(),cinema.getName(),cinema.getTimeOpen(),cinema.getTimeClose(),cinema.getPause());
 		}
 }

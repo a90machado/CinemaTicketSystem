@@ -140,7 +140,7 @@ public class Room extends BaseEntity {
 	
 	public RoomDTO turnToDTO(Room room) {
 
-		return new RoomDTO(room.getCinema().turnToDTO(cinema),room.getTotalSeats(), room.getMovie().turnToDTO(room.getMovie()));
+		return new RoomDTO(room.getId(),room.getCinema().turnToDTO(cinema),room.getTotalSeats(), room.getMovie().turnToDTO(room.getMovie()));
 		}
 
 	// ________________________________________________________________________________________________

@@ -1,6 +1,8 @@
 package io.altar.CinemaTicketSystem.ModelsDTO;
 
-public class ScheduleDTO {
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
+
+public class ScheduleDTO extends BaseEntity{
 private static final long serialVersionUID = 1L;
 	
 	//Attributes
@@ -12,8 +14,9 @@ private static final long serialVersionUID = 1L;
 	// ________________________________________________________________________________________________
 
 	// Constructor
-	public ScheduleDTO(int sessionBegin, int sessionEnd, int availableSeats, RoomDTO roomDTO) {
+	public ScheduleDTO(long id, int sessionBegin, int sessionEnd, int availableSeats, RoomDTO roomDTO) {
 		super();
+		this.setId(id);
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionEnd;
 		this.availableSeats = availableSeats;

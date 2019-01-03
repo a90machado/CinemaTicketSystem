@@ -3,7 +3,9 @@ package io.altar.CinemaTicketSystem.ModelsDTO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QueueDTO {
+import io.altar.CinemaTicketSystem.Models.BaseEntity;
+
+public class QueueDTO extends BaseEntity{
 	
 	//Attributes
 	private RoomDTO roomDTO;
@@ -13,8 +15,9 @@ public class QueueDTO {
 	// ________________________________________________________________________________________________
 
 	// Constructor
-	public QueueDTO(RoomDTO roomDTO, List<Boolean> seats) {
+	public QueueDTO(long id, RoomDTO roomDTO, List<Boolean> seats) {
 		super();
+		this.setId(id);
 		this.roomDTO = roomDTO;
 		this.seats = seats;
 	}
