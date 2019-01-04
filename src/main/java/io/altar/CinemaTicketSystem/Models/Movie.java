@@ -48,8 +48,18 @@ public class Movie extends BaseEntity {
 	// ________________________________________________________________________________________________
 
 	// Get and Setters:
+	
+	
 	public String getTitle() {
 		return title;
+	}
+
+	public List<Room> getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 	public void setTitle(String title) {
