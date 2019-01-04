@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 import io.altar.CinemaTicketSystem.Business.MovieBusiness;
 import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
-import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
+import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
 
 @Path("movie")
 public class MovieServices {
@@ -32,23 +32,27 @@ public class MovieServices {
 		public void create(Movie movie) {
 			movieBusiness.create(movie);
 		}
+		
 		@GET
 		@Produces(MediaType.APPLICATION_JSON)
 		public List<MovieDTO> getAll() {
 			return movieBusiness.getAll();
 		}
+		
 		@GET
 		@Path("/{id}")
 		@Produces(MediaType.APPLICATION_JSON)
 		public MovieDTO findById(@PathParam("id") long id) {
 			return movieBusiness.findById(id);
-		}
+		}		
+		
 		@GET
-		@Path("/rooms/{id}")
+		@Path("/rooms/schedules/{id}")
 		@Produces(MediaType.APPLICATION_JSON)
-		public List<RoomDTO> getAllRooms(@PathParam("id") long id) {
-			return movieBusiness.getAllRoomsFromMovieID(id);
+		public List<ScheduleDTO> getAllSchedulesFromRoom(@PathParam("id") long id) {
+			return movieBusiness.getSchedulesFromRoom(movieBusiness.getAllRoomsFromMovieID(id));
 		}
+		
 		@DELETE
 		@Path("/{id}")
 		@Produces(MediaType.APPLICATION_JSON)
@@ -56,6 +60,7 @@ public class MovieServices {
 			movieBusiness.delete(id);
 			return Response.ok().build();
 		}
+		
 		@PUT
 		@Produces(MediaType.APPLICATION_JSON)
 		public void update(Movie movie) {

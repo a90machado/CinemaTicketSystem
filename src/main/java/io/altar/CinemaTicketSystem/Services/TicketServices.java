@@ -31,17 +31,20 @@ public class TicketServices{
 	public void create(Ticket ticket) {
 		ticketBusiness.create(ticket);
 	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<TicketDTO> getAll() {
 		return ticketBusiness.getAll();
 	}
+	
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public TicketDTO findById(@PathParam("id") long id) {
 		return ticketBusiness.findById(id);
 	}
+	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -49,6 +52,7 @@ public class TicketServices{
 		ticketBusiness.delete(id);
 		return Response.ok().build();
 	}
+	
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	public void update(Ticket ticket) {

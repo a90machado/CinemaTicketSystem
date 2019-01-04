@@ -31,17 +31,20 @@ public class CinemaServices {
 	public void create(Cinema cinema) {
 		cinemaBusiness.create(cinema);
 	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<CinemaDTO> consult() {
 		return cinemaBusiness.getAll();
 	}
+	
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public CinemaDTO findById(@PathParam("id") long id) {
 		return cinemaBusiness.findById(id);
 	}
+	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -49,6 +52,7 @@ public class CinemaServices {
 		cinemaBusiness.delete(id);
 		return Response.ok().build();
 	}
+	
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
 	public void update(Cinema cinema) {

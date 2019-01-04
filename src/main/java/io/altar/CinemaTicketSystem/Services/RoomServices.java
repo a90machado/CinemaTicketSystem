@@ -31,17 +31,20 @@ public class RoomServices {
 	public void create(Room room) {
 		roomBusiness.create(room);
 	}
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<RoomDTO> getAll() {
 		return roomBusiness.getAll();
 	}
+	
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public RoomDTO findById(@PathParam("id") long id) {
 		return roomBusiness.findById(id);
 	}
+	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
