@@ -129,11 +129,11 @@ public class Room extends BaseEntity {
 
 		numberOfSessions = (int) (openTime / (movie.getDuration() + cinema.getPause()));
 
-		for (int i = 1; i < numberOfSessions; i++) {
-			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
+		for (int i = 1; i <= numberOfSessions; i++) {			
 			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this, this.getTotalSeats());
 			schedules.add(newSchedule);
 			sessionBegin = sessionEnd;
+			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
 		}
 
 	}

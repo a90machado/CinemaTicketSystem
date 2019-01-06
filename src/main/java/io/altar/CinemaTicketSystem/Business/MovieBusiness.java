@@ -52,26 +52,29 @@ public class MovieBusiness {
 
 	public List<RoomDTO> getAllRoomsFromMovieID(long id) {
 		Movie movie = moviesRepository.getById(id);
-		List<Room> rooms = movie.getRooms();
+		List<Room> rooms = new ArrayList<Room>();
+		rooms=movie.getRooms();
 		List<RoomDTO> roomsDTO = new ArrayList<RoomDTO>();
 		for (Room room : rooms) {
 			roomsDTO.add(room.turnToDTO(room));
 		}
 		return roomsDTO;
 	}
+	
+	@Transactional
+	public List<ScheduleDTO> getSchedulesFromRoom(long id) {
 
-	public List<ScheduleDTO> getSchedulesFromRoom(List<RoomDTO> roomsDto) {
-
-		List<ScheduleDTO> schedulesDto = scheduleBusiness.getAll();
+		List<ScheduleDTO> schedulesDto = new ArrayList<ScheduleDTO>();				
 		List<ScheduleDTO> schedulesOfRoom = new ArrayList<ScheduleDTO>();
-
+		List<RoomDTO> roomsDto = new ArrayList<RoomDTO>();
+		
+		schedulesDto=scheduleBusiness.getAll();
+		roomsDto = getAllRoomsFromMovieID(id);
 		RoomDTO roomDto = roomsDto.get(0);
-
+				
 		for (ScheduleDTO scheduleDto : schedulesDto) {
 
-			RoomDTO scheduleRoom = schedulesDto.iterator().next().getRoomDTO();
-
-			if (scheduleRoom == roomDto) {
+			if (scheduleDto.getRoomDTO().getId() == roomDto.getId()) {
 				schedulesOfRoom.add(scheduleDto);
 			}
 		}
