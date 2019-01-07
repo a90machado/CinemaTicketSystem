@@ -1,6 +1,7 @@
 package io.altar.CinemaTicketSystem.ModelsDTO;
 
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
+import io.altar.CinemaTicketSystem.Models.TypeOfTicket;
 
 public class TicketDTO extends BaseEntity{
 	private static final long serialVersionUID = 1L;
@@ -8,19 +9,17 @@ public class TicketDTO extends BaseEntity{
 	// Attributes
 	
 	private RoomDTO roomDTO;
-	private String typeOfTicket;
-	private double price;
+	private TypeOfTicket typeOfTicket;
 	
 	// ________________________________________________________________________________________________
 
 	// Constructor
 		
-	public TicketDTO(long id, RoomDTO roomDTO, String typeOfTicket, double price) {
+	public TicketDTO(long id, RoomDTO roomDTO,TypeOfTicket typeOfTicket) {
 		super();
 		this.setId(id);
 		this.roomDTO = roomDTO;
-		this.typeOfTicket = typeOfTicket;
-		this.price = price;
+		this.typeOfTicket=typeOfTicket;
 	}
 	// ________________________________________________________________________________________________
 	
@@ -34,19 +33,12 @@ public class TicketDTO extends BaseEntity{
 		this.roomDTO = roomDTO;
 	}
 
-	public String getTypeOfTicket() {
+	public TypeOfTicket getTypeOfTicket() {
 		return typeOfTicket;
 	}
 
-	public void setTypeOfTicket(String typeOfTicket) {
+	public void setTypeOfTicket(TypeOfTicket typeOfTicket) {
 		this.typeOfTicket = typeOfTicket;
 	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
+	
 }

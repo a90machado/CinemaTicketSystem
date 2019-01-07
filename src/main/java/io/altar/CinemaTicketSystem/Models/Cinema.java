@@ -24,10 +24,13 @@ public class Cinema extends BaseEntity {
 	private String name;
 	private int timeOpen; // Minutes
 	private int timeClose; // Minutes
-	private int pause; // Minutes
+	private int pause; // Minutes	
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
 	private List<Room> rooms = new ArrayList<Room>();
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfTicket")
+	private List<TypeOfTicket> typeOfTicket = new ArrayList<TypeOfTicket>();
 
 	// ________________________________________________________________________________________________
 	
@@ -83,6 +86,15 @@ public class Cinema extends BaseEntity {
 	public void setRooms(List<Room> rooms) {
 		this.rooms = rooms;
 	}
+
+	public List<TypeOfTicket> getTypeOfTicket() {
+		return typeOfTicket;
+	}
+
+	public void setTypeOfTicket(List<TypeOfTicket> typeOfTicket) {
+		this.typeOfTicket = typeOfTicket;
+	}
+	
 	// ________________________________________________________________________________________________
 
 	// Extra Methods

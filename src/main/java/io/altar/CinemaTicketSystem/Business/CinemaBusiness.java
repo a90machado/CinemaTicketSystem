@@ -44,4 +44,6 @@ public class CinemaBusiness{
 	public CinemaDTO findById(long id) {
 		return cinemaRepository.getById(id).turnToDTO(cinemaRepository.getById(id));
 	}
+	
+	
 }

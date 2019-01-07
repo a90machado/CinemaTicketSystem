@@ -136,6 +136,7 @@ public class Room extends BaseEntity {
 			if(sessionEnd>=24*60) {
 				sessionEnd=sessionEnd-(24*60);
 			}
+			
 			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this, this.getTotalSeats());
 			schedules.add(newSchedule);
 			sessionBegin = sessionEnd;

@@ -42,8 +42,6 @@ public class QueueDTO extends BaseEntity{
 
 	public void setSeats(List<Boolean> seats) {
 		this.seats = seats;
-	}
-
-	
+	}	
 	
 }

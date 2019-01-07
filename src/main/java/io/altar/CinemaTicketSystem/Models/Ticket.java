@@ -11,6 +11,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 @Entity
 @NamedQueries({ @NamedQuery(name = Ticket.GET_ALL_TICKETS_QUERY_NAME, query = "SELECT t FROM Ticket t"),
 		@NamedQuery(name = Ticket.DELETE_ALL_TICKETS_QUERY_NAME, query = "DELETE FROM Ticket") })
+
 // ________________________________________________________________________________________________
 
 public class Ticket extends BaseEntity {
@@ -19,8 +20,8 @@ public class Ticket extends BaseEntity {
 	// Attributes
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
-	private String typeOfTicket;
-	private double price;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private TypeOfTicket typeOfTicket;
 
 	// ________________________________________________________________________________________________
 
@@ -45,28 +46,19 @@ public class Ticket extends BaseEntity {
 		this.room = room;
 	}
 
-	public String getTypeOfTicket() {
+	public TypeOfTicket getTypeOfTicket() {
 		return typeOfTicket;
 	}
 
-	public void setTypeOfTicket(String typeOfTicket) {
+	public void setTypeOfTicket(TypeOfTicket typeOfTicket) {
 		this.typeOfTicket = typeOfTicket;
 	}
 
-	public double getPrice() {
-		return price;
-	}
-
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	// ________________________________________________________________________________________________
-	
-	//Extra Methods
+
+	// Extra Methods	
 	
 	public TicketDTO turnToDTO(Ticket ticket) {
-
-		return new TicketDTO(ticket.getId(),ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket(),ticket.getPrice());
-		}
+		return new TicketDTO(ticket.getId(), ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket());
+	}
 }

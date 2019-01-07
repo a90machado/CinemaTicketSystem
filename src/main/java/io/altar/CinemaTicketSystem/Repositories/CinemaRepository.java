@@ -26,5 +26,4 @@ public class CinemaRepository extends EntityRepository<Cinema>{
 		return Cinema.DELETE_ALL_CINEMAS_QUERY_NAME;
 	}
 
-
 }
