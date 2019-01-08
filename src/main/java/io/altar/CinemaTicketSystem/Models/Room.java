@@ -20,6 +20,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 // ________________________________________________________________________________________________
 
 public class Room extends BaseEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	// Attributes:
@@ -34,6 +35,8 @@ public class Room extends BaseEntity {
 	private int totalSeats;	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	List<Schedule> schedules = new ArrayList<Schedule>();
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
+	List<ExibitionDay> exibitionDays = new ArrayList<ExibitionDay>();
 
 	// ________________________________________________________________________________________________
 
@@ -105,6 +108,14 @@ public class Room extends BaseEntity {
 
 	public void setStructure(List<Queue> structure) {
 		this.structure = structure;
+	}
+	
+	public List<ExibitionDay> getExibitionDays() {
+		return exibitionDays;
+	}
+
+	public void setExibitionDays(List<ExibitionDay> exibitionDays) {
+		this.exibitionDays = exibitionDays;
 	}
 
 	// ________________________________________________________________________________________________

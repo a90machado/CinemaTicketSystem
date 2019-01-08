@@ -3,18 +3,17 @@ package io.altar.CinemaTicketSystem.ModelsDTO;
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
 
 public class RoomDTO extends BaseEntity {
-private static final long serialVersionUID = 1L;
-	
+
+	private static final long serialVersionUID = 1L;
+
 	// Attributes
-	
 	private CinemaDTO cinemaDTO;
 	private int totalSeats;
 	private MovieDTO movieDTO;
-	
+
 	// ________________________________________________________________________________________________
-	
+
 	// Constructor
-	
 	public RoomDTO(long id, CinemaDTO cinemaDTO, int totalSeats, MovieDTO movieDTO) {
 		super();
 		this.setId(id);
@@ -24,9 +23,8 @@ private static final long serialVersionUID = 1L;
 
 	}
 	// ________________________________________________________________________________________________
-	
-	// Get and setters
 
+	// Get and setters
 	public CinemaDTO getCinema() {
 		return cinemaDTO;
 	}

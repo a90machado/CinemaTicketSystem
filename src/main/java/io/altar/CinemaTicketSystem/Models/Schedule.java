@@ -11,7 +11,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
 @Entity
 @NamedQueries({ @NamedQuery(name = Schedule.GET_ALL_SCHEDULES_QUERY_NAME, query = "SELECT s FROM Schedule s"),
 		@NamedQuery(name = Schedule.DELETE_ALL_SCHEDULES_QUERY_NAME, query = "DELETE FROM Schedule") })
-//________________________________________________________________________________________________
+// ________________________________________________________________________________________________
 
 public class Schedule extends BaseEntity {
 
@@ -36,15 +36,15 @@ public class Schedule extends BaseEntity {
 	public Schedule() {
 	}
 
-	public Schedule(int sessionBegin, int sessionENd, Room room, int availableSeats) {		
-		this.sessionBegin = sessionBegin;
-		this.sessionEnd = sessionENd;	
+	public Schedule( int sessionBegin, int sessionEnd,Room room, int availableSeats) {
+		super();
 		this.room = room;
-		this.availableSeats=availableSeats;
+		this.sessionBegin = sessionBegin;
+		this.sessionEnd = sessionEnd;
+		this.availableSeats = availableSeats;
 	}
 
 	// ________________________________________________________________________________________________
-
 
 	// Get and Setters
 	public int getSessionBegin() {

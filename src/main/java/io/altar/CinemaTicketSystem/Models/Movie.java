@@ -18,6 +18,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 // ________________________________________________________________________________________________
 
 public class Movie extends BaseEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
@@ -47,9 +48,7 @@ public class Movie extends BaseEntity {
 
 	// ________________________________________________________________________________________________
 
-	// Get and Setters:
-	
-	
+	// Get and Setters:	
 	public String getTitle() {
 		return title;
 	}

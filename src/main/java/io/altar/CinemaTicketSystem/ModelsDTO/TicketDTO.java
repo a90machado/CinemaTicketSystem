@@ -8,20 +8,17 @@ public class TicketDTO extends BaseEntity{
 
 	// Attributes	
 	private RoomDTO roomDTO;	
-	private TypeOfTicketDTO typeOfTicketDto;
-	
+	private TypeOfTicketDTO typeOfTicketDto;	
 	
 	// ________________________________________________________________________________________________
 
-	// Constructor
-		
+	// Constructor		
 	public TicketDTO(long id, RoomDTO roomDTO, TypeOfTicketDTO typeOfTicketDto) {
 		super();
 		this.setId(id);
 		this.roomDTO = roomDTO;
 		this.typeOfTicketDto = typeOfTicketDto;
 	}
-
 	
 	// ________________________________________________________________________________________________
 	

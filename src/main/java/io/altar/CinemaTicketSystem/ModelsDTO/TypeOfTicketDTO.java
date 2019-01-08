@@ -24,7 +24,6 @@ public class TypeOfTicketDTO extends BaseEntity{
 		this.cinemaDto = cinemaDto;
 	}
 
-
 	// ________________________________________________________________________________________________
 	
 	// Get and Setters:		
