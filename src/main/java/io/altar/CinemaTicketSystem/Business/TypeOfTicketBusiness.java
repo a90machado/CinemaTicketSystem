@@ -26,8 +26,7 @@ public class TypeOfTicketBusiness {
 
 	@Transactional
 	public TypeOfTicket create(TypeOfTicket typeOfTicket) {
-		typeOfTicket=typeOfTicketRepository.save(typeOfTicket);
-		//////AQUI//////
+		typeOfTicketRepository.save(typeOfTicket);
 		return typeOfTicket;
 	}
 

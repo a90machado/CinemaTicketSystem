@@ -13,13 +13,15 @@ import javax.persistence.NamedQuery;
 // ________________________________________________________________________________________________
 
 public class TypeOfTicket extends BaseEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
 	private String typeOfTicket;
 	private double priceOfTicket;
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Cinema cinema;
+	private Cinema cinema;	
+	
 	// ________________________________________________________________________________________________
 
 	// NamedQuerys
@@ -31,7 +33,7 @@ public class TypeOfTicket extends BaseEntity {
 	// Constructor
 	public TypeOfTicket() {
 	}
-
+	
 	// ________________________________________________________________________________________________
 
 	// Gets and Setters:

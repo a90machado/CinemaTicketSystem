@@ -25,10 +25,8 @@ public class Cinema extends BaseEntity {
 	private int timeOpen; // Minutes
 	private int timeClose; // Minutes
 	private int pause; // Minutes	
-	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
-	private List<Room> rooms = new ArrayList<Room>();
-	
+	private List<Room> rooms = new ArrayList<Room>();	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfTicket")
 	private List<TypeOfTicket> typeOfTicket = new ArrayList<TypeOfTicket>();
 
@@ -90,7 +88,7 @@ public class Cinema extends BaseEntity {
 	public List<TypeOfTicket> getTypeOfTicket() {
 		return typeOfTicket;
 	}
-
+	
 	public void setTypeOfTicket(List<TypeOfTicket> typeOfTicket) {
 		this.typeOfTicket = typeOfTicket;
 	}
@@ -98,12 +96,16 @@ public class Cinema extends BaseEntity {
 	// ________________________________________________________________________________________________
 
 	// Extra Methods
+	
+	public void addTypeOfTicket(TypeOfTicket typeOfTicket) {
+		this.typeOfTicket.add(typeOfTicket);
+	}
+	
 	public void addRoom(Room room) {
 		this.rooms.add(room);
 	}
 	
 	public CinemaDTO turnToDTO(Cinema cinema) {
-
 		return new CinemaDTO(cinema.getId(),cinema.getName(),cinema.getTimeOpen(),cinema.getTimeClose(),cinema.getPause());
-		}
+	}
 }

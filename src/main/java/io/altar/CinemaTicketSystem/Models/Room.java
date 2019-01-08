@@ -31,8 +31,7 @@ public class Room extends BaseEntity {
 	private int numberOfSeatsPerQueue;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy="room")
 	private List<Queue> structure = new ArrayList<Queue>();
-	private int totalSeats;
-	
+	private int totalSeats;	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	List<Schedule> schedules = new ArrayList<Schedule>();
 

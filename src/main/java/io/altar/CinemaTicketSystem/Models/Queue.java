@@ -31,11 +31,13 @@ public class Queue extends BaseEntity{
 
 	//Attributes
 	@ManyToOne(cascade = CascadeType.ALL)
-	private Room room;
-	
+	private Room room;	
 	@ElementCollection
 	private List<Boolean> seats = new ArrayList<Boolean>();
+	
+	// ________________________________________________________________________________________________
 
+	// Gets and Setters:
 	public Room getRoom() {
 		return room;
 	}
