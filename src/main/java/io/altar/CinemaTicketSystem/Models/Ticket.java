@@ -20,6 +20,7 @@ public class Ticket extends BaseEntity {
 	// Attributes
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
+	@ManyToOne(cascade = CascadeType.ALL)
 	private TypeOfTicket typeOfTicket;
 
 	// ________________________________________________________________________________________________

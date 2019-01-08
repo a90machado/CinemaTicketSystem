@@ -27,7 +27,7 @@ public class Cinema extends BaseEntity {
 	private int pause; // Minutes	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
 	private List<Room> rooms = new ArrayList<Room>();	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "typeOfTicket")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "cinema")
 	private List<TypeOfTicket> typeOfTicket = new ArrayList<TypeOfTicket>();
 
 	// ________________________________________________________________________________________________
