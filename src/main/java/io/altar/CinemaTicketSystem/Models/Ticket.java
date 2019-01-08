@@ -15,6 +15,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 // ________________________________________________________________________________________________
 
 public class Ticket extends BaseEntity {
+	
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
@@ -59,6 +60,6 @@ public class Ticket extends BaseEntity {
 	// Extra Methods	
 	
 	public TicketDTO turnToDTO(Ticket ticket) {
-		return new TicketDTO(ticket.getId(), ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket());
+		return new TicketDTO(ticket.getId(), ticket.getRoom().turnToDTO(ticket.getRoom()),ticket.getTypeOfTicket().turnToDTO(ticket.getTypeOfTicket()));
 	}
 }

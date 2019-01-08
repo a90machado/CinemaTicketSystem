@@ -1,12 +1,13 @@
 package io.altar.CinemaTicketSystem.Business;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-
 import io.altar.CinemaTicketSystem.Models.TypeOfTicket;
+import io.altar.CinemaTicketSystem.ModelsDTO.TypeOfTicketDTO;
 import io.altar.CinemaTicketSystem.Repositories.TypeOfTicketRepository;
 
 public class TypeOfTicketBusiness {
@@ -30,13 +31,19 @@ public class TypeOfTicketBusiness {
 		return typeOfTicket;
 	}
 
-	public List<TypeOfTicket> getAll() {
-		List<TypeOfTicket> typeOfTicket = typeOfTicketRepository.getAll();		
-		return typeOfTicket;
+	public List<TypeOfTicketDTO> getAll() {
+		
+		List<TypeOfTicket> typeOfTickets = typeOfTicketRepository.getAll();		
+		List<TypeOfTicketDTO> typeOfTicketDTO = new ArrayList<TypeOfTicketDTO>();
+		
+		for (TypeOfTicket typeOfTicket: typeOfTickets) {
+			typeOfTicketDTO.add(typeOfTicket.turnToDTO(typeOfTicket));
+		}
+		return typeOfTicketDTO;
 	}
 
-	public TypeOfTicket findById(long id) {
-		return typeOfTicketRepository.getById(id);
+	public TypeOfTicketDTO findById(long id) {
+		return typeOfTicketRepository.getById(id).turnToDTO(typeOfTicketRepository.getById(id));
 	}
 	
 }

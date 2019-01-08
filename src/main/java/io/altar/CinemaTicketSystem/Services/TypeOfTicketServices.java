@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import io.altar.CinemaTicketSystem.Business.TypeOfTicketBusiness;
 import io.altar.CinemaTicketSystem.Models.TypeOfTicket;
+import io.altar.CinemaTicketSystem.ModelsDTO.TypeOfTicketDTO;
 
 @Path("typeofticket")
 public class TypeOfTicketServices {
@@ -33,14 +34,14 @@ public class TypeOfTicketServices {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TypeOfTicket> getAll() {
+	public List<TypeOfTicketDTO> getAll() {
 		return typeOfTicketBusiness.getAll();
 	}
 	
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public TypeOfTicket findById(@PathParam("id") long id) {
+	public TypeOfTicketDTO findById(@PathParam("id") long id) {
 		return typeOfTicketBusiness.findById(id);
 	}
 	

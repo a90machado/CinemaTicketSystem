@@ -1,26 +1,25 @@
 package io.altar.CinemaTicketSystem.ModelsDTO;
 
 import io.altar.CinemaTicketSystem.Models.BaseEntity;
-import io.altar.CinemaTicketSystem.Models.TypeOfTicket;
 
 public class TicketDTO extends BaseEntity{
+	
 	private static final long serialVersionUID = 1L;
 
-	// Attributes
-	
+	// Attributes	
 	private RoomDTO roomDTO;	
-	private TypeOfTicket typeOfTicket;
+	private TypeOfTicketDTO typeOfTicketDto;
 	
 	
 	// ________________________________________________________________________________________________
 
 	// Constructor
 		
-	public TicketDTO(long id, RoomDTO roomDTO, TypeOfTicket typeOfTicket) {
+	public TicketDTO(long id, RoomDTO roomDTO, TypeOfTicketDTO typeOfTicketDto) {
 		super();
 		this.setId(id);
 		this.roomDTO = roomDTO;
-		this.typeOfTicket = typeOfTicket;
+		this.typeOfTicketDto = typeOfTicketDto;
 	}
 
 	
@@ -37,13 +36,12 @@ public class TicketDTO extends BaseEntity{
 	}
 
 
-	public TypeOfTicket getTypeOfTicket() {
-		return typeOfTicket;
+	public TypeOfTicketDTO getTypeOfTicket() {
+		return typeOfTicketDto;
 	}
 
 
-	public void setTypeOfTicket(TypeOfTicket typeOfTicket) {
-		this.typeOfTicket = typeOfTicket;
-	}
-	
+	public void setTypeOfTicket(TypeOfTicketDTO typeOfTicketDto) {
+		this.typeOfTicketDto = typeOfTicketDto;
+	}	
 }
