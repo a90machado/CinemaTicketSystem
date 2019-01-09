@@ -197,6 +197,5 @@ public class Room extends BaseEntity {
 		return new RoomDTO(room.getId(), room.getCinema().turnToDTO(cinema), room.getTotalSeats(),
 				room.getMovie().turnToDTO(room.getMovie()));
 	}
-
-	// ________________________________________________________________________________________________
+	
 }

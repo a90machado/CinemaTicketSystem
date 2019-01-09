@@ -27,7 +27,7 @@ public class ScheduleBusiness {
 
 	@Transactional
 	public Schedule create(Schedule schedule) {
-		return schedulesRepository.save(schedule);
+		return schedulesRepository.save(schedule);	
 	}
 
 	public List<ScheduleDTO> getAll() {

@@ -1,10 +1,14 @@
 package io.altar.CinemaTicketSystem.Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
 
@@ -22,7 +26,9 @@ public class Schedule extends BaseEntity {
 	private Room room;
 	private int sessionBegin; // Minutes
 	private int sessionEnd; // Minutes
-	private int availableSeats;	
+	private int availableSeats;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<Queue> queues = new ArrayList<Queue>();	
 	
 	// ________________________________________________________________________________________________
 
@@ -42,6 +48,7 @@ public class Schedule extends BaseEntity {
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionEnd;
 		this.availableSeats = availableSeats;
+		this.setQueues();
 	}
 
 	// ________________________________________________________________________________________________
@@ -78,14 +85,30 @@ public class Schedule extends BaseEntity {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
+	
+	public List<Queue> getQueues() {
+		return queues;
+	}
+
+	public void setQueues(List<Queue> queues) {
+		this.queues = queues;
+	}
 		
 	// ________________________________________________________________________________________________	
+	
 	
 	//Extra Methods
 	public void takeASeat() {
 		this.availableSeats--;
 	}
 	
+	public void setQueues() {
+		for (int i = 0; i < this.room.getNumberOfQueues(); i++) {
+			Queue queue=new Queue(this.room);
+			this.queues.add(queue);
+		}
+	}
+		
 	public ScheduleDTO turnToDTO(Schedule schedule) {
 		
 		return new ScheduleDTO(schedule.getId(),schedule.getSessionBegin(),schedule.getsessionEnd(),schedule.getAvailableSeats(),schedule.getRoom().turnToDTO(schedule.getRoom()));
