@@ -1,10 +1,11 @@
 package io.altar.CinemaTicketSystem.Models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
@@ -20,7 +21,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 // ________________________________________________________________________________________________
 
 public class Room extends BaseEntity {
-	
+
 	private static final long serialVersionUID = 1L;
 
 	// Attributes:
@@ -30,9 +31,7 @@ public class Room extends BaseEntity {
 	private Cinema cinema;
 	private int numberOfQueues;
 	private int numberOfSeatsPerQueue;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy="room")
-	private List<Queue> structure = new ArrayList<Queue>();
-	private int totalSeats;	
+	private int totalSeats;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	List<Schedule> schedules = new ArrayList<Schedule>();
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
@@ -84,7 +83,6 @@ public class Room extends BaseEntity {
 	public void setSchedules(List<Schedule> schedules) {
 		this.schedules = schedules;
 	}
-	
 
 	public int getNumberOfQueues() {
 		return numberOfQueues;
@@ -102,14 +100,6 @@ public class Room extends BaseEntity {
 		this.numberOfSeatsPerQueue = numberOfSeatsPerQueue;
 	}
 
-	public List<Queue> getStructure() {
-		return structure;
-	}
-
-	public void setStructure(List<Queue> structure) {
-		this.structure = structure;
-	}
-	
 	public List<ExibitionDay> getExibitionDays() {
 		return exibitionDays;
 	}
@@ -119,17 +109,13 @@ public class Room extends BaseEntity {
 	}
 
 	// ________________________________________________________________________________________________
-	// Extra Methods
-
-	public void chooseSeat(Boolean structure[][], int queue, int seat){
-		structure[queue][seat] = true;
-	}
+	// Extra Methods	
 
 	public void createSchedule(Cinema cinema, Movie movie) {
 		int openTime;
 		int numberOfSessions;
 		int sessionBegin = cinema.getTimeOpen();
-		int sessionEnd = cinema.getTimeOpen()+ movie.getDuration() + cinema.getPause();
+		int sessionEnd = cinema.getTimeOpen() + movie.getDuration() + cinema.getPause();
 
 		if (cinema.getTimeClose() < cinema.getTimeOpen()) {
 			openTime = ((24 * 60) - cinema.getTimeOpen()) + cinema.getTimeClose();
@@ -140,13 +126,13 @@ public class Room extends BaseEntity {
 		numberOfSessions = (int) (openTime / (movie.getDuration() + cinema.getPause()));
 
 		for (int i = 1; i <= numberOfSessions; i++) {
-			if(sessionBegin>=24*60) {
-				sessionBegin=sessionBegin-(24*60);
+			if (sessionBegin >= 24 * 60) {
+				sessionBegin = sessionBegin - (24 * 60);
 			}
-			if(sessionEnd>=24*60) {
-				sessionEnd=sessionEnd-(24*60);
+			if (sessionEnd >= 24 * 60) {
+				sessionEnd = sessionEnd - (24 * 60);
 			}
-			
+
 			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this, this.getTotalSeats());
 			schedules.add(newSchedule);
 			sessionBegin = sessionEnd;
@@ -154,11 +140,63 @@ public class Room extends BaseEntity {
 		}
 
 	}
-	
+
+	public void createExibionDays(Room room) {
+
+		long startDay = room.getMovie().getReleaseDate().getTime();
+		long endDay = room.getMovie().getEndDate().getTime();
+
+		for (long i = startDay; i <= endDay; i=i+(1000*60*60*24)) {
+
+			Date date = new Date(i);
+
+			Calendar cal = Calendar.getInstance();
+			cal.setTime(date);
+			int year = cal.get(Calendar.YEAR);
+			int month = cal.get(Calendar.MONTH)+1;
+			int day = cal.get(Calendar.DAY_OF_MONTH);
+			int dayOfWeekIndex = cal.get(Calendar.DAY_OF_WEEK);
+
+			String dayOfWeek = room.getDayOfWeek(dayOfWeekIndex);
+
+			ExibitionDay exibitionDay = new ExibitionDay(room, day, month, year, dayOfWeek);
+			exibitionDays.add(exibitionDay);
+		}
+
+	}
+
+	public String getDayOfWeek(int dayOfWeek) {
+
+		if (dayOfWeek == 1) {
+			return "Sunday";
+		}
+		if (dayOfWeek == 2) {
+			return "Monday";
+		}
+		if (dayOfWeek == 3) {
+			return "Tuesday";
+		}
+		if (dayOfWeek == 4) {
+			return "Wednesday";
+		}
+		if (dayOfWeek == 5) {
+			return "Thusday";
+		}
+		if (dayOfWeek == 6) {
+			return "Friday";
+		}
+		if (dayOfWeek == 7) {
+			return "Saturday";
+		} else {
+			return "Undefned DayOfWeek";
+		}
+	}
+
 	public RoomDTO turnToDTO(Room room) {
 
-		return new RoomDTO(room.getId(),room.getCinema().turnToDTO(cinema),room.getTotalSeats(), room.getMovie().turnToDTO(room.getMovie()));
-		}
+		return new RoomDTO(room.getId(), room.getCinema().turnToDTO(cinema), room.getTotalSeats(),
+				room.getMovie().turnToDTO(room.getMovie()));
+	}
 
 	// ________________________________________________________________________________________________
 }

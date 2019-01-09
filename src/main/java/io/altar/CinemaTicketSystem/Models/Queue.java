@@ -24,7 +24,9 @@ public class Queue extends BaseEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
 	@ElementCollection
-	private List<Boolean> seats = new ArrayList<Boolean>();
+	private List<Boolean> seatsPerQueue = new ArrayList<Boolean>();
+	@ElementCollection
+	private List<Boolean> queues = new ArrayList<Boolean>();
 
 	// ________________________________________________________________________________________________
 
@@ -48,28 +50,42 @@ public class Queue extends BaseEntity {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-
-	public List<Boolean> getSeats() {
-		return seats;
+	
+	public List<Boolean> getSeatsPerQueue() {
+		return seatsPerQueue;
 	}
 
-	public void setSeats(List<Boolean> seats) {
-		this.seats = seats;
+	public void setSeatsPerQueue(List<Boolean> seatsPerQueue) {
+		this.seatsPerQueue = seatsPerQueue;
 	}
+
+	public List<Boolean> getQueues() {
+		return queues;
+	}
+
+	public void setQueues(List<Boolean> queues) {
+		this.queues = queues;
+	}	
 
 	// ________________________________________________________________________________________________
 
-	// Extra Methods
+	// Extra Methods	
 
-	public void setSeats() {
+	public void setSeatsPerQueue() {
 		for (int i = 0; i < this.room.getNumberOfSeatsPerQueue(); i++) {
-			this.seats.add(false);
+			this.seatsPerQueue.add(false);
 		}
 	}
 
+	public void setQueues() {
+		for (int i = 0; i < this.room.getNumberOfQueues(); i++) {
+			this.queues.add(false);
+		}
+	}
+	
 	public QueueDTO turnToDTO(Queue queue) {
 
-		return new QueueDTO(queue.getId(), queue.getRoom().turnToDTO(queue.getRoom()), queue.getSeats());
+		return new QueueDTO(queue.getId(), queue.getRoom().turnToDTO(queue.getRoom()), queue.getSeatsPerQueue(), queue.getQueues());
 	}
 
 }

@@ -11,16 +11,18 @@ public class QueueDTO extends BaseEntity {
 
 	// Attributes
 	private RoomDTO roomDTO;
-	private List<Boolean> seats = new ArrayList<Boolean>();
+	private List<Boolean> seatsPerQueue = new ArrayList<Boolean>();
+	private List<Boolean> queues = new ArrayList<Boolean>();
 
 	// ________________________________________________________________________________________________
 
 	// Constructor
-	public QueueDTO(long id, RoomDTO roomDTO, List<Boolean> seats) {
+	public QueueDTO(long id, RoomDTO roomDTO, List<Boolean> seatsPerQueue, List<Boolean> queues) {
 		super();
 		this.setId(id);
 		this.roomDTO = roomDTO;
-		this.seats = seats;
+		this.seatsPerQueue = seatsPerQueue;
+		this.queues = queues;
 	}
 	// ________________________________________________________________________________________________
 
@@ -33,12 +35,20 @@ public class QueueDTO extends BaseEntity {
 		this.roomDTO = roomDTO;
 	}
 
-	public List<Boolean> getSeats() {
-		return seats;
+	public List<Boolean> getSeatsPerQueue() {
+		return seatsPerQueue;
 	}
 
-	public void setSeats(List<Boolean> seats) {
-		this.seats = seats;
+	public void setSeatsPerQueue(List<Boolean> seatsPerQueue) {
+		this.seatsPerQueue = seatsPerQueue;
+	}
+
+	public List<Boolean> getQueues() {
+		return queues;
+	}
+
+	public void setQueues(List<Boolean> queues) {
+		this.queues = queues;
 	}
 
 }

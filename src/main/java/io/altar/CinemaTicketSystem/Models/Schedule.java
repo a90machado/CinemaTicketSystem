@@ -22,7 +22,7 @@ public class Schedule extends BaseEntity {
 	private Room room;
 	private int sessionBegin; // Minutes
 	private int sessionEnd; // Minutes
-	private int availableSeats;
+	private int availableSeats;	
 	
 	// ________________________________________________________________________________________________
 

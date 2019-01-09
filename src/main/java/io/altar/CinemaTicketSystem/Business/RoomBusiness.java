@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import io.altar.CinemaTicketSystem.Models.Queue;
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.Repositories.QueueRepository;
@@ -34,14 +33,9 @@ public class RoomBusiness {
 	@Transactional
 	public RoomDTO create(Room room) {
 		room = roomsRepository.save(room);
+		room.createExibionDays(room);
 		room.createSchedule(room.getCinema(), room.getMovie());
-		for (int i = 0; i < room.getNumberOfQueues(); i++) {
-			Queue queue = new Queue();
-			queue.setRoom(room);
-			queue.setSeats();
-			queueRepository.save(queue);
-			room.getStructure().add(queue);
-		}
+		
 		return room.turnToDTO(room);
 	}
 

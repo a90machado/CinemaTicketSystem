@@ -22,6 +22,8 @@ public class ExibitionDay extends BaseEntity {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Room room;
 	private int day;
+	private int month;
+	private int year;
 	private String dayOfWeek;
 
 	// ________________________________________________________________________________________________
@@ -35,6 +37,16 @@ public class ExibitionDay extends BaseEntity {
 	// Constructor
 	public ExibitionDay() {
 	}
+	
+	public ExibitionDay(Room room, int day, int month, int year, String dayOfWeek) {
+		super();
+		this.room = room;
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.dayOfWeek = dayOfWeek;
+	}
+
 	// ________________________________________________________________________________________________
 
 	// Gets and Setters:
@@ -52,6 +64,22 @@ public class ExibitionDay extends BaseEntity {
 
 	public void setDay(int day) {
 		this.day = day;
+	}	
+
+	public int getMonth() {
+		return month;
+	}
+
+	public void setMonth(int month) {
+		this.month = month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
 	}
 
 	public String getDayOfWeek() {
@@ -67,6 +95,6 @@ public class ExibitionDay extends BaseEntity {
 	// Extra Methods
 
 	public ExibitionDayDTO turnToDTO(ExibitionDay exibitionDay) {
-		return new ExibitionDayDTO(exibitionDay.getId(),exibitionDay.getRoom().turnToDTO(exibitionDay.getRoom()),exibitionDay.getDay(),exibitionDay.getDayOfWeek());
+		return new ExibitionDayDTO(exibitionDay.getId(),exibitionDay.getRoom().turnToDTO(exibitionDay.getRoom()),exibitionDay.getDay(), exibitionDay.getMonth(),exibitionDay.getYear(),exibitionDay.getDayOfWeek());
 	}
 }
