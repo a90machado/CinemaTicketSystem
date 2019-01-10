@@ -13,6 +13,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import io.altar.CinemaTicketSystem.Business.MovieBusiness;
 import io.altar.CinemaTicketSystem.Models.Movie;
@@ -30,8 +31,8 @@ public class MovieServices {
 		@Path("new")
 		@Consumes(MediaType.APPLICATION_JSON)
 		@Produces(MediaType.APPLICATION_JSON)
-		public void create(Movie movie) {
-			movieBusiness.create(movie);
+		public Response create(Movie movie) {
+			return movieBusiness.create(movie);
 		}
 		
 		@GET
@@ -64,7 +65,7 @@ public class MovieServices {
 		
 		@PUT
 		@Produces(MediaType.APPLICATION_JSON)
-		public void update(Movie movie) {
-			movieBusiness.update(movie);
+		public Response update(Movie movie) {
+			return movieBusiness.update(movie);
 		}
 }
