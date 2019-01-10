@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -30,6 +31,7 @@ public class Movie extends BaseEntity {
 	private Date endDate;
 	private String director;
 	private String cast;
+	@Lob
 	private String synopsis;
 	@OneToMany(fetch = FetchType.LAZY,mappedBy = "movie")
 	private List<Room> rooms = new ArrayList<Room>();

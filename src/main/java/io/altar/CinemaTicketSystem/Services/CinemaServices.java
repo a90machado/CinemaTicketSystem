@@ -45,6 +45,13 @@ public class CinemaServices {
 		return cinemaBusiness.findById(id);
 	}
 	
+	@GET
+	@Path("/movie/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<CinemaDTO> findByMovieId(@PathParam("id") long id) {
+		return cinemaBusiness.findByMovieId(id);
+	}
+	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

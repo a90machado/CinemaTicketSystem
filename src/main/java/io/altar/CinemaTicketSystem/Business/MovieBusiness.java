@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.core.Response;
 
 import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
@@ -27,13 +29,23 @@ public class MovieBusiness {
 	}
 
 	@Transactional
-	public Movie update(Movie movie) {
-		return moviesRepository.update(movie);
+	public Response update(Movie movie) {
+		if (movie.getReleaseDate().getTime() <= movie.getEndDate().getTime()) {
+			moviesRepository.update(movie);
+			return Response.status(Response.Status.OK).build();
+		} else {
+			throw new BadRequestException("endDate must be a date equal to releaseDate or after releasedate.");
+		}
 	}
 
 	@Transactional
-	public Movie create(Movie movie) {
-		return moviesRepository.save(movie);
+	public Response create(Movie movie) {
+		if (movie.getReleaseDate().getTime() <= movie.getEndDate().getTime()) {
+			moviesRepository.save(movie);
+			return Response.status(Response.Status.OK).build();
+		} else {
+			throw new BadRequestException("endDate must be a date equal to releaseDate or after releasedate.");
+		}
 	}
 
 	public List<MovieDTO> getAll() {
@@ -53,25 +65,26 @@ public class MovieBusiness {
 	public List<RoomDTO> getAllRoomsFromMovieID(long id) {
 		Movie movie = moviesRepository.getById(id);
 		List<Room> rooms = new ArrayList<Room>();
-		rooms=movie.getRooms();
+		rooms = movie.getRooms();
 		List<RoomDTO> roomsDTO = new ArrayList<RoomDTO>();
 		for (Room room : rooms) {
 			roomsDTO.add(room.turnToDTO(room));
 		}
 		return roomsDTO;
 	}
-	
+
 	@Transactional
 	public List<ScheduleDTO> getSchedulesFromRoom(long id) {
 
-		List<ScheduleDTO> schedulesDto = new ArrayList<ScheduleDTO>();				
+		List<ScheduleDTO> schedulesDto = new ArrayList<ScheduleDTO>();
 		List<ScheduleDTO> schedulesOfRoom = new ArrayList<ScheduleDTO>();
 		List<RoomDTO> roomsDto = new ArrayList<RoomDTO>();
-		
-		schedulesDto=scheduleBusiness.getAll();
+
+		schedulesDto = scheduleBusiness.getAll();
+
 		roomsDto = getAllRoomsFromMovieID(id);
 		RoomDTO roomDto = roomsDto.get(0);
-				
+
 		for (ScheduleDTO scheduleDto : schedulesDto) {
 
 			if (scheduleDto.getExibitionDayDTO().getRoomDto().getId() == roomDto.getId()) {
