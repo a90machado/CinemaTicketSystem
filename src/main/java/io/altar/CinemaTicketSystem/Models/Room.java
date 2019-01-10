@@ -33,8 +33,6 @@ public class Room extends BaseEntity {
 	private int numberOfSeatsPerQueue;
 	private int totalSeats;
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
-	List<Schedule> schedules = new ArrayList<Schedule>();
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
 	List<ExibitionDay> exibitionDays = new ArrayList<ExibitionDay>();
 
 	// ________________________________________________________________________________________________
@@ -76,14 +74,6 @@ public class Room extends BaseEntity {
 		this.totalSeats = totalSeats;
 	}
 
-	public List<Schedule> getSchedules() {
-		return schedules;
-	}
-
-	public void setSchedules(List<Schedule> schedules) {
-		this.schedules = schedules;
-	}
-
 	public int getNumberOfQueues() {
 		return numberOfQueues;
 	}
@@ -111,35 +101,6 @@ public class Room extends BaseEntity {
 	// ________________________________________________________________________________________________
 	// Extra Methods	
 
-	public void createSchedule(Cinema cinema, Movie movie) {
-		int openTime;
-		int numberOfSessions;
-		int sessionBegin = cinema.getTimeOpen();
-		int sessionEnd = cinema.getTimeOpen() + movie.getDuration() + cinema.getPause();
-
-		if (cinema.getTimeClose() < cinema.getTimeOpen()) {
-			openTime = ((24 * 60) - cinema.getTimeOpen()) + cinema.getTimeClose();
-		} else {
-			openTime = cinema.getTimeClose() - cinema.getTimeOpen();
-		}
-
-		numberOfSessions = (int) (openTime / (movie.getDuration() + cinema.getPause()));
-
-		for (int i = 1; i <= numberOfSessions; i++) {
-			if (sessionBegin >= 24 * 60) {
-				sessionBegin = sessionBegin - (24 * 60);
-			}
-			if (sessionEnd >= 24 * 60) {
-				sessionEnd = sessionEnd - (24 * 60);
-			}
-
-			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this, this.getTotalSeats());
-			schedules.add(newSchedule);
-			sessionBegin = sessionEnd;
-			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
-		}
-
-	}
 
 	public void createExibionDays(Room room) {
 

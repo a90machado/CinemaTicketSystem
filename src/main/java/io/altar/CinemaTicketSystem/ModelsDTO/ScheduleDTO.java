@@ -10,18 +10,18 @@ public class ScheduleDTO extends BaseEntity {
 	private int sessionBegin; // Minutes
 	private int sessionEnd; // Minutes
 	private int availableSeats;
-	private RoomDTO roomDTO;
+	private ExibitionDayDTO exibitionDayDTO;
 
 	// ________________________________________________________________________________________________
 
 	// Constructor
-	public ScheduleDTO(long id, int sessionBegin, int sessionEnd, int availableSeats, RoomDTO roomDTO) {
+	public ScheduleDTO(long id, int sessionBegin, int sessionEnd, int availableSeats, ExibitionDayDTO exibitionDayDTO) {
 		super();
 		this.setId(id);
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionEnd;
 		this.availableSeats = availableSeats;
-		this.roomDTO = roomDTO;
+		this.exibitionDayDTO = exibitionDayDTO;
 	}
 	// ________________________________________________________________________________________________
 
@@ -50,12 +50,12 @@ public class ScheduleDTO extends BaseEntity {
 		this.availableSeats = availableSeats;
 	}
 
-	public RoomDTO getRoomDTO() {
-		return roomDTO;
+	public ExibitionDayDTO getExibitionDayDTO() {
+		return exibitionDayDTO;
 	}
 
-	public void setRoomDTO(RoomDTO roomDTO) {
-		this.roomDTO = roomDTO;
+	public void setExibitionDayDTO(ExibitionDayDTO exibitionDayDTO) {
+		this.exibitionDayDTO = exibitionDayDTO;
 	}
 
 }

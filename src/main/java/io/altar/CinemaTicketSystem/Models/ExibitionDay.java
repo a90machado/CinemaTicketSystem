@@ -1,10 +1,15 @@
 package io.altar.CinemaTicketSystem.Models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 
 import io.altar.CinemaTicketSystem.ModelsDTO.ExibitionDayDTO;
 
@@ -25,6 +30,8 @@ public class ExibitionDay extends BaseEntity {
 	private int month;
 	private int year;
 	private String dayOfWeek;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "exibitionDay", cascade = CascadeType.ALL)
+	List<Schedule> schedules = new ArrayList<Schedule>();
 
 	// ________________________________________________________________________________________________
 
@@ -45,6 +52,7 @@ public class ExibitionDay extends BaseEntity {
 		this.month = month;
 		this.year = year;
 		this.dayOfWeek = dayOfWeek;
+		this.createSchedule(this.getRoom().getCinema(), this.getRoom().getMovie());
 	}
 
 	// ________________________________________________________________________________________________
@@ -89,10 +97,48 @@ public class ExibitionDay extends BaseEntity {
 	public void setDayOfWeek(String dayOfWeek) {
 		this.dayOfWeek = dayOfWeek;
 	}
+	
+	public List<Schedule> getSchedules() {
+		return schedules;
+	}
+
+	public void setSchedules(List<Schedule> schedules) {
+		this.schedules = schedules;
+	}
 
 	// ________________________________________________________________________________________________
 
 	// Extra Methods
+	
+	public void createSchedule(Cinema cinema, Movie movie) {
+		int openTime;
+		int numberOfSessions;
+		int sessionBegin = cinema.getTimeOpen();
+		int sessionEnd = cinema.getTimeOpen() + movie.getDuration() + cinema.getPause();
+
+		if (cinema.getTimeClose() < cinema.getTimeOpen()) {
+			openTime = ((24 * 60) - cinema.getTimeOpen()) + cinema.getTimeClose();
+		} else {
+			openTime = cinema.getTimeClose() - cinema.getTimeOpen();
+		}
+
+		numberOfSessions = (int) (openTime / (movie.getDuration() + cinema.getPause()));
+
+		for (int i = 1; i <= numberOfSessions; i++) {
+			if (sessionBegin >= 24 * 60) {
+				sessionBegin = sessionBegin - (24 * 60);
+			}
+			if (sessionEnd >= 24 * 60) {
+				sessionEnd = sessionEnd - (24 * 60);
+			}
+
+			Schedule newSchedule = new Schedule(sessionBegin, sessionEnd, this, this.room.getTotalSeats());
+			schedules.add(newSchedule);
+			sessionBegin = sessionEnd;
+			sessionEnd = sessionEnd + (movie.getDuration() + cinema.getPause());
+		}
+
+	}
 
 	public ExibitionDayDTO turnToDTO(ExibitionDay exibitionDay) {
 		return new ExibitionDayDTO(exibitionDay.getId(),exibitionDay.getRoom().turnToDTO(exibitionDay.getRoom()),exibitionDay.getDay(), exibitionDay.getMonth(),exibitionDay.getYear(),exibitionDay.getDayOfWeek());

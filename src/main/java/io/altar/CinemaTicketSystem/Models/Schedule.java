@@ -22,8 +22,8 @@ public class Schedule extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	//Attributes
-	@ManyToOne(cascade=CascadeType.ALL)
-	private Room room;
+	@ManyToOne(cascade = CascadeType.ALL)
+	private ExibitionDay exibitionDay;
 	private int sessionBegin; // Minutes
 	private int sessionEnd; // Minutes
 	private int availableSeats;
@@ -42,9 +42,9 @@ public class Schedule extends BaseEntity {
 	public Schedule() {
 	}
 
-	public Schedule( int sessionBegin, int sessionEnd,Room room, int availableSeats) {
+	public Schedule( int sessionBegin, int sessionEnd,ExibitionDay exibitionDay, int availableSeats) {
 		super();
-		this.room = room;
+		this.exibitionDay = exibitionDay;
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionEnd;
 		this.availableSeats = availableSeats;
@@ -75,17 +75,17 @@ public class Schedule extends BaseEntity {
 	}
 
 	public void setAvailableSeats(int availableSeats) {
-		this.availableSeats = this.getRoom().getTotalSeats();
-	}
-
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
+		this.availableSeats = this.getExibitionDay().getRoom().getTotalSeats();
 	}
 	
+	public ExibitionDay getExibitionDay() {
+		return exibitionDay;
+	}
+
+	public void setExibitionDay(ExibitionDay exibitionDay) {
+		this.exibitionDay = exibitionDay;
+	}
+
 	public List<Boolean> getStructure() {
 		return structure;
 	}
@@ -103,8 +103,8 @@ public class Schedule extends BaseEntity {
 	}
 	
 	public void setStructure() {
-		for (int i = 0; i < this.room.getNumberOfQueues(); i++) {
-			for (int j = 0; j< this.room.getNumberOfSeatsPerQueue(); j++) {
+		for (int i = 0; i < this.exibitionDay.getRoom().getNumberOfQueues(); i++) {
+			for (int j = 0; j< this.exibitionDay.getRoom().getNumberOfSeatsPerQueue(); j++) {
 				this.structure.add(false);
 			}
 		}
@@ -119,7 +119,7 @@ public class Schedule extends BaseEntity {
 		
 	public ScheduleDTO turnToDTO(Schedule schedule) {
 		
-		return new ScheduleDTO(schedule.getId(),schedule.getSessionBegin(),schedule.getsessionEnd(),schedule.getAvailableSeats(),schedule.getRoom().turnToDTO(schedule.getRoom()));
+		return new ScheduleDTO(schedule.getId(),schedule.getSessionBegin(),schedule.getsessionEnd(),schedule.getAvailableSeats(),schedule.getExibitionDay().turnToDTO(schedule.getExibitionDay()));
 	}
 	
 }

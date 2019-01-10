@@ -74,7 +74,7 @@ public class MovieBusiness {
 				
 		for (ScheduleDTO scheduleDto : schedulesDto) {
 
-			if (scheduleDto.getRoomDTO().getId() == roomDto.getId()) {
+			if (scheduleDto.getExibitionDayDTO().getRoomDto().getId() == roomDto.getId()) {
 				schedulesOfRoom.add(scheduleDto);
 			}
 		}

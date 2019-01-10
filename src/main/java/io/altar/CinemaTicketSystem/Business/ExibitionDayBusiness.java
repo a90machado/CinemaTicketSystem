@@ -26,8 +26,9 @@ public class ExibitionDayBusiness {
 	}
 
 	@Transactional
-	public ExibitionDay create(ExibitionDay exibitionDay) {
-		return exibitionDayRepository.save(exibitionDay);
+	public ExibitionDayDTO create(ExibitionDay exibitionDay) {
+		exibitionDayRepository.save(exibitionDay);
+		return exibitionDay.turnToDTO(exibitionDay);
 	}
 
 	public List<ExibitionDayDTO> getAll() {
