@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
 
@@ -27,8 +27,8 @@ public class Schedule extends BaseEntity {
 	private int sessionBegin; // Minutes
 	private int sessionEnd; // Minutes
 	private int availableSeats;
-	@OneToMany(cascade=CascadeType.ALL)
-	private List<Queue> queues = new ArrayList<Queue>();	
+	@ElementCollection
+	private List<Boolean> structure = new ArrayList<Boolean>();	
 	
 	// ________________________________________________________________________________________________
 
@@ -48,7 +48,7 @@ public class Schedule extends BaseEntity {
 		this.sessionBegin = sessionBegin;
 		this.sessionEnd = sessionEnd;
 		this.availableSeats = availableSeats;
-		this.setQueues();
+		this.setStructure();
 	}
 
 	// ________________________________________________________________________________________________
@@ -86,12 +86,12 @@ public class Schedule extends BaseEntity {
 		this.room = room;
 	}
 	
-	public List<Queue> getQueues() {
-		return queues;
+	public List<Boolean> getStructure() {
+		return structure;
 	}
 
-	public void setQueues(List<Queue> queues) {
-		this.queues = queues;
+	public void setStructure(List<Boolean> structure) {
+		this.structure = structure;
 	}
 		
 	// ________________________________________________________________________________________________	
@@ -102,11 +102,19 @@ public class Schedule extends BaseEntity {
 		this.availableSeats--;
 	}
 	
-	public void setQueues() {
+	public void setStructure() {
 		for (int i = 0; i < this.room.getNumberOfQueues(); i++) {
-			Queue queue=new Queue(this.room);
-			this.queues.add(queue);
+			for (int j = 0; j< this.room.getNumberOfSeatsPerQueue(); j++) {
+				this.structure.add(false);
+			}
 		}
+	}	
+	
+	public void reserveSeats(List<Integer> positions) {			
+		for (int i = 0; i < positions.size(); i++) {
+			int element=positions.get(i);
+			this.structure.set(element, true);
+		}		
 	}
 		
 	public ScheduleDTO turnToDTO(Schedule schedule) {
