@@ -46,6 +46,13 @@ public class ExibitionDayServices {
 		return exibitionDayBusiness.findById(id);
 	}
 	
+	@GET
+	@Path("/room/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<ExibitionDayDTO> exibitionDaysFromRoom(@PathParam("id") long id) {
+		return exibitionDayBusiness.exibitionDaysFromRoom(id);
+	}
+	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

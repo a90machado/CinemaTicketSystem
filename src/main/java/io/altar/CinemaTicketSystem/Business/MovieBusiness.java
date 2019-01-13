@@ -10,6 +10,7 @@ import javax.ws.rs.core.Response;
 
 import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.ModelsDTO.ExibitionDayDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
@@ -18,10 +19,13 @@ import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
 public class MovieBusiness {
 
 	@Inject
-	protected MoviesRepository moviesRepository;
+	protected MoviesRepository moviesRepository;	
 
 	@Inject
 	protected ScheduleBusiness scheduleBusiness;
+
+	@Inject
+	protected ExibitionDayBusiness exibitionDayBusiness;
 
 	@Transactional
 	public void delete(long id) {
@@ -77,21 +81,22 @@ public class MovieBusiness {
 	public List<ScheduleDTO> getSchedulesFromRoom(long id) {
 
 		List<ScheduleDTO> schedulesDto = new ArrayList<ScheduleDTO>();
-		List<ScheduleDTO> schedulesOfRoom = new ArrayList<ScheduleDTO>();
-		List<RoomDTO> roomsDto = new ArrayList<RoomDTO>();
-
+		List<ScheduleDTO> schedulesDTO = new ArrayList<ScheduleDTO>();
+		List<ExibitionDayDTO> exibitionDays = exibitionDayBusiness.exibitionDaysFromRoom(id);
+		
 		schedulesDto = scheduleBusiness.getAll();
-
-		roomsDto = getAllRoomsFromMovieID(id);
-		RoomDTO roomDto = roomsDto.get(0);
-
-		for (ScheduleDTO scheduleDto : schedulesDto) {
-
-			if (scheduleDto.getExibitionDayDTO().getRoomDto().getId() == roomDto.getId()) {
-				schedulesOfRoom.add(scheduleDto);
+		////date.now() tirar o schedule
+		for(ExibitionDayDTO exibitionDay : exibitionDays) {
+			for (ScheduleDTO scheduleDto : schedulesDto) {
+				if (scheduleDto.getExibitionDayDTO().getId()==exibitionDay.getId()) {
+				schedulesDTO.add(scheduleDto);
+				}		
 			}
 		}
-
-		return schedulesOfRoom;
+		
+		return schedulesDTO;
 	}
+	
+	
+	
 }

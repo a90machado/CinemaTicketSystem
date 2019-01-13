@@ -53,12 +53,20 @@ public class CinemaBusiness {
 		List<Cinema> cinemas = new ArrayList<Cinema>();
 		List<CinemaDTO> cinemasDTO = new ArrayList<CinemaDTO>();
 		List<Room> rooms = new ArrayList<Room>();
+		
 		cinemas = cinemaRepository.getAll();
+		
 		for (Cinema cinema : cinemas) {
+			
 			rooms = cinema.getRooms();
+			
 			for (Room room : rooms) {
+				
 				if (room.getMovie().getId() == id) {
+					
 					cinemasDTO.add(cinema.turnToDTO(cinema));
+						
+					break;			
 				}
 			}
 		}

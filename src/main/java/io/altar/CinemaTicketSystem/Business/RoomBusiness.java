@@ -48,6 +48,18 @@ public class RoomBusiness {
 	public RoomDTO findById(long id) {
 		return roomsRepository.getById(id).turnToDTO(roomsRepository.getById(id));
 	}
-
+	
+	@Transactional
+	public List<RoomDTO> getRoomFromMovie(long idM, long idC){
+		List<Room> rooms = roomsRepository.getAll();
+		List<RoomDTO> roomsDTO = new ArrayList<RoomDTO>();
+		
+		for (Room room: rooms) {
+			if(room.getMovie().getId()==idM && room.getCinema().getId()==idC) {
+			roomsDTO.add(room.turnToDTO(room));
+			}
+		}
+		return roomsDTO;		
+	}
 	
 }
