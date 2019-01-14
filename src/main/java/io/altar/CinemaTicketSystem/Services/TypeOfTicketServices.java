@@ -44,6 +44,13 @@ public class TypeOfTicketServices {
 	public TypeOfTicketDTO findById(@PathParam("id") long id) {
 		return typeOfTicketBusiness.findById(id);
 	}
+
+	@GET
+	@Path("/cinema/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<TypeOfTicketDTO> getByCinema(@PathParam("id") long id) {
+		return typeOfTicketBusiness.getByCinema(id);
+	}
 	
 	@DELETE
 	@Path("/{id}")

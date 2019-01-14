@@ -46,4 +46,16 @@ public class TypeOfTicketBusiness {
 		return typeOfTicketRepository.getById(id).turnToDTO(typeOfTicketRepository.getById(id));
 	}
 	
+	public List<TypeOfTicketDTO> getByCinema(long id){
+		List<TypeOfTicketDTO> typeOfTicketsDto = this.getAll();
+		List<TypeOfTicketDTO> typeOfTicketsDTO = new ArrayList<TypeOfTicketDTO>();
+		
+		for (TypeOfTicketDTO typeOfTicketDto: typeOfTicketsDto) {
+			if(typeOfTicketDto.getCinemaDto().getId()==id) {
+			typeOfTicketsDTO.add(typeOfTicketDto);
+			}
+		}
+		return typeOfTicketsDTO;	
+	}
+	
 }

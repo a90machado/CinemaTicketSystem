@@ -45,6 +45,13 @@ public class ScheduleServices{
 		return scheduleBusiness.findById(id);
 	}
 	
+	@GET
+	@Path("/availableseats/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public int getAvailableSeats(@PathParam("id") long id) {
+		return scheduleBusiness.getAvailableSeats(id);
+	}
+	
 	@DELETE
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)

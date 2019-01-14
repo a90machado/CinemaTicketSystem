@@ -15,6 +15,9 @@ public class ExibitionDayBusiness {
 
 	@Inject
 	protected ExibitionDayRepository exibitionDayRepository;
+	
+	@Inject
+	protected MovieBusiness movieBusiness;
 
 	@Transactional
 	public void delete(long id) {
@@ -67,8 +70,7 @@ public class ExibitionDayBusiness {
 			}			
 		}
 		
-		return ExibitionDaysDTO;
-		
+		return ExibitionDaysDTO;		
 	}
 
 	public ExibitionDayDTO findById(long id) {

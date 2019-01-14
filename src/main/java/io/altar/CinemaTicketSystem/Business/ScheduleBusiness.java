@@ -43,4 +43,10 @@ public class ScheduleBusiness {
 	public ScheduleDTO findById(long id) {
 		return schedulesRepository.getById(id).turnToDTO(schedulesRepository.getById(id));
 	}
+	
+	public int getAvailableSeats(long id) {
+		ScheduleDTO scheduleDto=this.findById(id);
+		
+		return scheduleDto.getAvailableSeats();
+	}
 }
