@@ -8,19 +8,23 @@ public class RoomDTO extends BaseEntity {
 
 	// Attributes
 	private CinemaDTO cinemaDTO;
-	private int totalSeats;
 	private MovieDTO movieDTO;
+	private int numberOfQueues;
+	private int numberOfSeatsPerQueue;
+	private int totalSeats;
 
+	
 	// ________________________________________________________________________________________________
 
 	// Constructor
-	public RoomDTO(long id, CinemaDTO cinemaDTO, int totalSeats, MovieDTO movieDTO) {
+	public RoomDTO(long id, CinemaDTO cinemaDTO, MovieDTO movieDTO, int numberOfQueues, int numberOfSeatsPerQueue, int totalSeats) {
 		super();
 		this.setId(id);
 		this.cinemaDTO = cinemaDTO;
-		this.totalSeats = totalSeats;
 		this.movieDTO = movieDTO;
-
+		this.numberOfQueues = numberOfQueues;
+		this.numberOfSeatsPerQueue = numberOfSeatsPerQueue;
+		this.totalSeats=totalSeats;
 	}
 	// ________________________________________________________________________________________________
 
@@ -33,13 +37,6 @@ public class RoomDTO extends BaseEntity {
 		this.cinemaDTO = cinemaDTO;
 	}
 
-	public int getTotalSeats() {
-		return totalSeats;
-	}
-
-	public void setTotalSeats(int totalSeats) {
-		this.totalSeats = totalSeats;
-	}
 
 	public MovieDTO getMovie() {
 		return movieDTO;
@@ -48,5 +45,30 @@ public class RoomDTO extends BaseEntity {
 	public void setMovie(MovieDTO movie) {
 		this.movieDTO = movie;
 	}
+
+	public int getNumberOfQueues() {
+		return numberOfQueues;
+	}
+
+	public void setNumberOfQueues(int numberOfQueues) {
+		this.numberOfQueues = numberOfQueues;
+	}
+
+	public int getNumberOfSeatsPerQueue() {
+		return numberOfSeatsPerQueue;
+	}
+
+	public void setNumberOfSeatsPerQueue(int numberOfSeatsPerQueue) {
+		this.numberOfSeatsPerQueue = numberOfSeatsPerQueue;
+	}
+
+	public int getTotalSeats() {
+		return totalSeats;
+	}
+
+	public void setTotalSeats(int totalSeats) {
+		this.totalSeats = totalSeats;
+	}
+	
 
 }
