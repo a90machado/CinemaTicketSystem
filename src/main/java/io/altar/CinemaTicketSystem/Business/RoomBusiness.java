@@ -30,7 +30,8 @@ public class RoomBusiness {
 	@Transactional
 	public RoomDTO create(Room room) {
 		room = roomsRepository.save(room);
-		room.createExibionDays(room);		
+		room.createExibionDays(room);
+		room.setTotalSeats();
 		return room.turnToDTO(room);
 	}
 

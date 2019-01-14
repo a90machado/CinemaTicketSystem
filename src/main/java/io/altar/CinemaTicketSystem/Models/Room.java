@@ -101,6 +101,9 @@ public class Room extends BaseEntity {
 	// ________________________________________________________________________________________________
 	// Extra Methods	
 
+	public void setTotalSeats() {
+		this.totalSeats=this.numberOfQueues*this.numberOfSeatsPerQueue;
+	}
 
 	public void createExibionDays(Room room) {
 
