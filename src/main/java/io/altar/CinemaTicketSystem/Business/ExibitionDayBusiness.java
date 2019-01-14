@@ -15,9 +15,6 @@ public class ExibitionDayBusiness {
 
 	@Inject
 	protected ExibitionDayRepository exibitionDayRepository;
-	
-	@Inject
-	protected MovieBusiness movieBusiness;
 
 	@Transactional
 	public void delete(long id) {
@@ -36,45 +33,48 @@ public class ExibitionDayBusiness {
 	}
 
 	public List<ExibitionDayDTO> getAll() {
-		
+
 		List<ExibitionDay> exibitionDays = exibitionDayRepository.getAll();
 		List<ExibitionDayDTO> ExibitionDaysDTO = new ArrayList<ExibitionDayDTO>();
-		
-		for (ExibitionDay exibitionDay: exibitionDays) {
+
+		for (ExibitionDay exibitionDay : exibitionDays) {
 			ExibitionDaysDTO.add(exibitionDay.turnToDTO(exibitionDay));
 		}
 		return ExibitionDaysDTO;
 	}
-	
+
 	@Transactional
-	public List<ExibitionDayDTO> exibitionDaysFromRoom(long id){
-		
+	public List<ExibitionDayDTO> exibitionDaysFromRoom(long id) {
+
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
-		int month = cal.get(Calendar.MONTH)+1;
+		int month = cal.get(Calendar.MONTH) + 1;
 		int day = cal.get(Calendar.DAY_OF_MONTH);
-		int count=0, daysOfWeek=7;
-		
-		
+		int count = 0, daysOfWeek = 7;
+
 		List<ExibitionDay> exibitionDays = exibitionDayRepository.getAll();
-		
-		List<ExibitionDayDTO> ExibitionDaysDTO = new ArrayList<ExibitionDayDTO>();		
-		
-		for (ExibitionDay exibitionDay: exibitionDays) {
-			if (count==daysOfWeek) {
+
+		List<ExibitionDayDTO> ExibitionDaysDTO = new ArrayList<ExibitionDayDTO>();
+
+
+		for (ExibitionDay exibitionDay : exibitionDays) {
+			if (count == daysOfWeek) {
 				break;
 			}
-			if(exibitionDay.getRoom().getMovie().getId()==id && exibitionDay.getDay()>=day && exibitionDay.getMonth()>=month && exibitionDay.getYear()>=year) {
-				count++;
-				ExibitionDaysDTO.add(exibitionDay.turnToDTO(exibitionDay));
-			}			
-		}
 		
-		return ExibitionDaysDTO;		
+				if (exibitionDay.getRoom().getMovie().getId() == id && exibitionDay.getDay() >= day
+						&& exibitionDay.getMonth() >= month && exibitionDay.getYear() >= year) {
+					count++;
+					ExibitionDaysDTO.add(exibitionDay.turnToDTO(exibitionDay));
+				}			
+
+		}
+
+		return ExibitionDaysDTO;
 	}
 
 	public ExibitionDayDTO findById(long id) {
 		return exibitionDayRepository.getById(id).turnToDTO(exibitionDayRepository.getById(id));
 	}
-	
+
 }

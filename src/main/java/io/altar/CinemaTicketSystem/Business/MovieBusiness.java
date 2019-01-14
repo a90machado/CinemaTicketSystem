@@ -91,7 +91,7 @@ public class MovieBusiness {
 		List<ScheduleDTO> schedulesDto = new ArrayList<ScheduleDTO>();
 		List<ScheduleDTO> schedulesDTO = new ArrayList<ScheduleDTO>();
 		List<ExibitionDayDTO> exibitionDays = exibitionDayBusiness.exibitionDaysFromRoom(id);
-
+		
 		schedulesDto = scheduleBusiness.getAll();
 
 		for(ExibitionDayDTO exibitionDay : exibitionDays) {
