@@ -46,10 +46,17 @@ public class ScheduleServices{
 	}
 	
 	@GET
-	@Path("/availableseats/{id}")
+	@Path("/availableseats/{idC}+{idM}+{idS}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public int getAvailableSeats(@PathParam("id") long id) {
-		return scheduleBusiness.getAvailableSeats(id);
+	public int getAvailableSeats(@PathParam("idC") long idC, @PathParam("idM") long idM, @PathParam("idS") long idS) {
+		return scheduleBusiness.getAvailableSeats(idC,idM,idS);
+	}
+	
+	@GET
+	@Path("/structure/{idC}+{idM}+{idS}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Boolean> getStructure(@PathParam("idC") long idC,@PathParam("idM") long idM,@PathParam("idS") long idS) {
+		return  scheduleBusiness.getStructure(idC,idM,idS);
 	}
 	
 	@DELETE
