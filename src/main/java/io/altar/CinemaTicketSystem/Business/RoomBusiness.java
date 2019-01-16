@@ -64,4 +64,17 @@ public class RoomBusiness {
 		return roomsDTO;		
 	}
 	
+	@Transactional
+	public List<RoomDTO> getRoomsFromCinema(long idC){
+		List<Room> rooms = roomsRepository.getAll();
+		List<RoomDTO> roomsDTO = new ArrayList<RoomDTO>();
+		
+		for (Room room: rooms) {
+			if(room.getCinema().getId()==idC) {
+			roomsDTO.add(room.turnToDTO(room));
+			}
+		}
+		return roomsDTO;		
+	}
+	
 }

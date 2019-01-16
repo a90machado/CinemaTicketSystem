@@ -51,6 +51,12 @@ public class RoomServices {
 	public List<RoomDTO> getRoomfromMovieId(@PathParam("idM") long idM,@PathParam("idC") long idC) {
 		return roomBusiness.getRoomFromMovie(idM,idC);
 	}
+	@GET
+	@Path("cinema/{idC}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<RoomDTO> getRoomsfromCinema(@PathParam("idC") long idC) {
+		return roomBusiness.getRoomsFromCinema(idC);
+	}
 	
 	@DELETE
 	@Path("/{id}")
