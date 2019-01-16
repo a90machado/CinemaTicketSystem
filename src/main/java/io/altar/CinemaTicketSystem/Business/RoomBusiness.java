@@ -8,15 +8,21 @@ import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
+import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
 public class RoomBusiness {
 	
 	@Inject
 	protected RoomsRepository roomsRepository;
+	
+	@Inject
+	protected CinemaRepository cinemaRepository;
 
 	@Transactional
 	public void delete(long id) {
+		roomsRepository.getById(id).setCinema(null);
+		roomsRepository.getById(id).setMovie(null);
 		roomsRepository.removeByID(id);
 	}
 
