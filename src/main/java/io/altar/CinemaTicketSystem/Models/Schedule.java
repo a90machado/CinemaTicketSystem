@@ -110,12 +110,6 @@ public class Schedule extends BaseEntity {
 		}
 	}	
 	
-	public void reserveSeats(List<Integer> positions) {			
-		for (int i = 0; i < positions.size(); i++) {
-			int element=positions.get(i);
-			this.structure.set(element, true);
-		}		
-	}
 		
 	public ScheduleDTO turnToDTO(Schedule schedule) {
 		
