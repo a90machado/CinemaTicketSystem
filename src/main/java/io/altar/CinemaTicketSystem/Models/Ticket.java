@@ -35,8 +35,15 @@ public class Ticket extends BaseEntity {
 	// Constructor
 	public Ticket() {
 	}
+	
+	public Ticket(Room room, TypeOfTicket typeOfTicket) {
+		super();
+		this.room = room;
+		this.typeOfTicket = typeOfTicket;
+	}
 
 	// ________________________________________________________________________________________________
+
 
 	// Gets and Setters:
 	public Room getRoom() {
