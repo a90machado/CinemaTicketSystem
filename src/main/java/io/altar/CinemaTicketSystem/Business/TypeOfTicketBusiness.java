@@ -17,6 +17,8 @@ public class TypeOfTicketBusiness {
 
 	@Transactional
 	public void delete(long id) {
+		TypeOfTicket typeOfTicket = typeOfTicketRepository.getById(id);
+		typeOfTicket.setCinema(null);
 		typeOfTicketRepository.removeByID(id);
 	}
 
