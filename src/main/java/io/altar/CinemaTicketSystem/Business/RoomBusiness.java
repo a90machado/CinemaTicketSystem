@@ -28,7 +28,10 @@ public class RoomBusiness {
 
 	@Transactional
 	public RoomDTO update(Room room) {
+		
 		room = roomsRepository.update(room);
+		room.setTotalSeats();
+		room.createExibionDays(room);
 		return room.turnToDTO(room);
 
 	}
