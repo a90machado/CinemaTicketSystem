@@ -28,8 +28,8 @@ public class TicketServices{
 	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(Ticket ticket) {
-		ticketBusiness.create(ticket);
+	public TicketDTO create(Ticket ticket) {
+		return ticketBusiness.create(ticket);
 	}
 	
 	@GET

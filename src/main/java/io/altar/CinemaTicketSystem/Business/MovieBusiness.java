@@ -66,6 +66,7 @@ public class MovieBusiness {
 	public MovieDTO findById(long id) {
 		return moviesRepository.getById(id).turnToDTO(moviesRepository.getById(id));
 	}
+	
 
 	public List<RoomDTO> getAllRoomsFromMovieID(long id) {
 		Movie movie = moviesRepository.getById(id);

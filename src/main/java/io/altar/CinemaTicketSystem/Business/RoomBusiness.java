@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
@@ -81,6 +82,30 @@ public class RoomBusiness {
 			}
 		}
 		return roomsDTO;		
+	}
+	
+	@Transactional
+	public List<MovieDTO> getmoviesFromCinema(long id){
+		List<Room> rooms = roomsRepository.getAll();
+		List<MovieDTO> moviesDto=new ArrayList<MovieDTO>();
+		List<Long> ids = new ArrayList<Long>();
+		
+		for(Room room: rooms) {
+			if(room.getCinema().getId()==id) {				
+				moviesDto.add(room.getMovie().turnToDTO(room.getMovie()));							
+			}
+		}
+		
+		ids.add(moviesDto.get(0).getId());
+		for (int i = 1; i < moviesDto.size(); i++) {
+			if(ids.contains(moviesDto.get(i).getId())){
+				moviesDto.remove(i);
+			}else {
+				ids.add(moviesDto.get(i).getId());
+			}
+		}
+		
+		return moviesDto;
 	}
 	
 }

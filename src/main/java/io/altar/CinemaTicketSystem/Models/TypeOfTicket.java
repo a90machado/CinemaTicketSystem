@@ -6,7 +6,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import io.altar.CinemaTicketSystem.ModelsDTO.TicketDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.TypeOfTicketDTO;
 
 @Entity

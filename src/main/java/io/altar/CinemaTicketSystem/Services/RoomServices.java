@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response;
 
 import io.altar.CinemaTicketSystem.Business.RoomBusiness;
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 
 @Path("room")
@@ -51,11 +52,19 @@ public class RoomServices {
 	public List<RoomDTO> getRoomfromMovieId(@PathParam("idM") long idM,@PathParam("idC") long idC) {
 		return roomBusiness.getRoomFromMovie(idM,idC);
 	}
+	
 	@GET
 	@Path("cinema/{idC}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<RoomDTO> getRoomsfromCinema(@PathParam("idC") long idC) {
 		return roomBusiness.getRoomsFromCinema(idC);
+	}
+	
+	@GET
+	@Path("cinema/movies/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<MovieDTO> getMoviesfromCinema(@PathParam("id") long id) {
+		return roomBusiness.getmoviesFromCinema(id);
 	}
 	
 	@DELETE

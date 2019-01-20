@@ -27,9 +27,12 @@ public class TicketBusiness {
 	}
 
 	@Transactional
-	public Ticket create(Ticket ticket) {
-		return ticketsRepository.save(ticket);
+	public TicketDTO create(Ticket ticket) {
+		Ticket ticketCreated = ticketsRepository.save(ticket);
+		ticketCreated.getTypeOfTicket().setCinema(ticketCreated.getRoom().getCinema());
+		return ticketCreated.turnToDTO(ticketCreated);
 	}
+
 
 	public List<TicketDTO> getAll() {
 		
