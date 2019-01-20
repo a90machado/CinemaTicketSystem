@@ -28,8 +28,8 @@ public class ScheduleServices{
 	@Path("new")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public void create(Schedule schedule) {
-		scheduleBusiness.create(schedule);
+	public Schedule create(Schedule schedule) {
+		return scheduleBusiness.create(schedule);
 	}
 	
 	@GET
@@ -68,8 +68,9 @@ public class ScheduleServices{
 	}
 	
 	@PUT
+	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void update(Schedule schedule) {
-		scheduleBusiness.update(schedule);
+	public ScheduleDTO update(@PathParam("id") long id, Schedule schedule) {
+		return scheduleBusiness.update(id,schedule);
 	}
 }
