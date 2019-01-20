@@ -30,20 +30,25 @@ public class CinemaBusiness {
 
 	@Transactional
 	public void delete(long id) {
+		
 		Cinema cinema = cinemaRepository.getById(id);
 		
 		if(cinema.getRooms().size()>0) {
 			for(Room room: cinema.getRooms()) {
+				room.setCinema(null);
+				room.setMovie(null);
 				roomRepository.removeByID(room.getId());
 			}
 		}
 		if(cinema.getTypeOfTicket().size()>0) {
 			for(TypeOfTicket typeOfticket:cinema.getTypeOfTicket()) {
+				typeOfticket.setCinema(null);
 				typeOfTicketRepository.removeByID(typeOfticket.getId());
 			}	
 		}
-		
-		//cinemaRepository.removeByID(id);
+		cinemaRepository.removeByID(id);
+
+
 	}
 
 	@Transactional

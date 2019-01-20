@@ -16,6 +16,7 @@ import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.ScheduleDTO;
 import io.altar.CinemaTicketSystem.Repositories.MoviesRepository;
+import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
 
 public class MovieBusiness {
 
@@ -27,10 +28,24 @@ public class MovieBusiness {
 
 	@Inject
 	protected ExibitionDayBusiness exibitionDayBusiness;
+	
+	@Inject
+	protected RoomsRepository roomRepository;
+	
 
 	@Transactional
 	public void delete(long id) {
-		moviesRepository.removeByID(id);
+		Movie movie = moviesRepository.getById(id);
+		
+		if(movie.getRooms().size()>0) {
+			for (Room room: movie.getRooms()) {
+				roomRepository.removeByID(room.getId());
+			}
+		}
+		else {
+			moviesRepository.removeByID(id);
+		}
+		
 	}
 
 	@Transactional
