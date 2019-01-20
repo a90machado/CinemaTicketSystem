@@ -9,18 +9,41 @@ import javax.transaction.Transactional;
 import io.altar.CinemaTicketSystem.Models.Cinema;
 import io.altar.CinemaTicketSystem.Models.Movie;
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.Models.TypeOfTicket;
 import io.altar.CinemaTicketSystem.ModelsDTO.CinemaDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
+import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
+import io.altar.CinemaTicketSystem.Repositories.TypeOfTicketRepository;
 
 public class CinemaBusiness {
 
 	@Inject
 	protected CinemaRepository cinemaRepository;
+	
+	@Inject
+	protected RoomsRepository roomRepository;
+	
+	@Inject
+	protected TypeOfTicketRepository typeOfTicketRepository;
+
 
 	@Transactional
 	public void delete(long id) {
-		cinemaRepository.removeByID(id);
+		Cinema cinema = cinemaRepository.getById(id);
+		
+		if(cinema.getRooms().size()>0) {
+			for(Room room: cinema.getRooms()) {
+				roomRepository.removeByID(room.getId());
+			}
+		}
+		if(cinema.getTypeOfTicket().size()>0) {
+			for(TypeOfTicket typeOfticket:cinema.getTypeOfTicket()) {
+				typeOfTicketRepository.removeByID(typeOfticket.getId());
+			}	
+		}
+		
+		//cinemaRepository.removeByID(id);
 	}
 
 	@Transactional
