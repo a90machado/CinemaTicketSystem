@@ -29,22 +29,16 @@ public class MovieBusiness {
 	@Inject
 	protected ExibitionDayBusiness exibitionDayBusiness;
 	
-	@Inject
-	protected RoomsRepository roomRepository;
-	
-
 	@Transactional
 	public void delete(long id) {
 		Movie movie = moviesRepository.getById(id);
 		
 		if(movie.getRooms().size()>0) {
 			for (Room room: movie.getRooms()) {
-				roomRepository.removeByID(room.getId());
+				room.setMovie(null);
 			}
 		}
-		else {
 			moviesRepository.removeByID(id);
-		}
 		
 	}
 
