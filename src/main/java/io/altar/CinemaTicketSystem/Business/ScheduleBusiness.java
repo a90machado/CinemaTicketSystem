@@ -52,11 +52,11 @@ public class ScheduleBusiness {
 			}
 		}
 		
-		correctSchedule.getStructure().clear();
+		////ERRO!
 		List<Boolean> structure = correctSchedule.getStructure();
-		
-		for (int i = structure.size()-1; i >= 0; i--) {
-			scheduleUpdated.getStructure().add(structure.get(i));
+		correctSchedule.getStructure().clear();
+		for (int i = 0; i < structure.size(); i++) {
+			correctSchedule.getStructure().add(structure.get(i));
 		}		
 		
 		schedulesRepository.update(correctSchedule);
