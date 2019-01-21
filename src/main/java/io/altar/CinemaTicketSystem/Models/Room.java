@@ -32,7 +32,7 @@ public class Room extends BaseEntity {
 	private int numberOfQueues;
 	private int numberOfSeatsPerQueue;
 	private int totalSeats;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.PERSIST)
 	List<ExibitionDay> exibitionDays = new ArrayList<ExibitionDay>();
 
 	// ________________________________________________________________________________________________
