@@ -45,8 +45,6 @@ public class CinemaBusiness {
 			}	
 		}
 		cinemaRepository.removeByID(id);
-
-
 	}
 
 	@Transactional
