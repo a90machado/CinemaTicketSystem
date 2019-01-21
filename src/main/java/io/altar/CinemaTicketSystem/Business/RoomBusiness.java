@@ -6,11 +6,14 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import io.altar.CinemaTicketSystem.Models.ExibitionDay;
 import io.altar.CinemaTicketSystem.Models.Room;
 import io.altar.CinemaTicketSystem.ModelsDTO.MovieDTO;
 import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
+import io.altar.CinemaTicketSystem.Repositories.ExibitionDayRepository;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
+import io.altar.CinemaTicketSystem.Repositories.ScheduleRepository;
 
 public class RoomBusiness {
 	
@@ -19,6 +22,12 @@ public class RoomBusiness {
 	
 	@Inject
 	protected CinemaRepository cinemaRepository;
+	
+	@Inject
+	protected ExibitionDayRepository exibitionDayRepository;
+	
+	@Inject
+	protected ScheduleRepository scheduleRepository;
 
 	@Transactional
 	public void delete(long id) {
@@ -29,7 +38,20 @@ public class RoomBusiness {
 
 	@Transactional
 	public RoomDTO update(Room room) {
-		room = roomsRepository.update(room);
+		Room roomBD=roomsRepository.getById(room.getId());
+		
+		
+		List<ExibitionDay> exibitionDays = roomBD.getExibitionDays();
+//		List<Long> idsExibitionday = new ArrayList<Long>();
+//		List<Long> idsSchedules = new ArrayList<Long>();
+		
+		for (ExibitionDay exibitionDay: exibitionDays){
+			System.out.println(exibitionDay.getId());
+			exibitionDayRepository.removeByID(exibitionDay.getId());
+		}
+
+		create(room);
+
 		return room.turnToDTO(room);
 
 	}

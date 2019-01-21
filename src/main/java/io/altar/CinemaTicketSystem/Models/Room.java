@@ -32,7 +32,7 @@ public class Room extends BaseEntity {
 	private int numberOfQueues;
 	private int numberOfSeatsPerQueue;
 	private int totalSeats;
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "room", cascade = CascadeType.PERSIST)
 	List<ExibitionDay> exibitionDays = new ArrayList<ExibitionDay>();
 
 	// ________________________________________________________________________________________________
@@ -157,9 +157,14 @@ public class Room extends BaseEntity {
 	}
 
 	public RoomDTO turnToDTO(Room room) {
-
-		return new RoomDTO(room.getId(), room.getCinema().turnToDTO(room.getCinema()),
+		
+		if(room.getMovie()!=null) {
+			return new RoomDTO(room.getId(), room.getCinema().turnToDTO(room.getCinema()),
 				room.getMovie().turnToDTO(room.getMovie()),room.getNumberOfQueues(),room.getNumberOfSeatsPerQueue(),room.getTotalSeats());
-	}
-	
+			}
+		else {
+			return new RoomDTO(room.getId(), room.getCinema().turnToDTO(room.getCinema()),
+					null,room.getNumberOfQueues(),room.getNumberOfSeatsPerQueue(),room.getTotalSeats());
+			}
+		}
 }

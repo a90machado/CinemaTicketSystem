@@ -41,7 +41,8 @@ public abstract class EntityRepository <T extends BaseEntity> {
 	}
 
 	public void removeByID(long id) {
-		entityManager.remove(entityManager.find(getEntityClass(), id));
+		if(entityManager.find(getEntityClass(), id)!=null)
+			entityManager.remove(entityManager.find(getEntityClass(), id));
 	}
 
 }
