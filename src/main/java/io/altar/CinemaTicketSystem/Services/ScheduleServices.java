@@ -68,9 +68,9 @@ public class ScheduleServices{
 	}
 	
 	@PUT
-	@Path("/{id}")
+	@Path("/{idR}+{idQ}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public ScheduleDTO update(@PathParam("id") long id, Schedule schedule) {
-		return scheduleBusiness.update(id,schedule);
+	public ScheduleDTO update(@PathParam("idR") long idR, @PathParam("idQ") long idQ, Schedule schedule) {
+		return scheduleBusiness.update(idR, idQ, schedule);
 	}
 }

@@ -30,7 +30,7 @@ public class ScheduleBusiness {
 	}
 
 	@Transactional
-	public ScheduleDTO update(long id,Schedule schedule) {
+	public ScheduleDTO update(long idR, long idQ, Schedule schedule) {
 		
 		List<ExibitionDay> exibitionDays = exibitionDayRepository.getAll();
 		List<Schedule> schedules = schedulesRepository.getAll();
@@ -41,7 +41,7 @@ public class ScheduleBusiness {
 		Schedule correctSchedule = new Schedule();
 		  
 		for(ExibitionDay exibition : exibitionDays) {
-			if(exibition.getRoom().getId()==id && exibition.getDay()==exibitionDay.getDay() && exibition.getMonth()==exibitionDay.getMonth() && exibition.getYear()==exibitionDay.getYear()) {
+			if(exibition.getRoom().getId()==idR && exibition.getDay()==exibitionDay.getDay() && exibition.getMonth()==exibitionDay.getMonth() && exibition.getYear()==exibitionDay.getYear()) {
 				exibitionDayChosen = exibition;
 			}
 		}
@@ -52,14 +52,17 @@ public class ScheduleBusiness {
 			}
 		}
 		
-		////ERRO!
 		List<Boolean> structure = correctSchedule.getStructure();
-		correctSchedule.getStructure().clear();
+		
 		for (int i = 0; i < structure.size(); i++) {
-			correctSchedule.getStructure().add(structure.get(i));
+			correctSchedule.getStructure().set(i, schedule.getStructure().get(i));
 		}		
 		
 		schedulesRepository.update(correctSchedule);
+		
+		for (int i = 1; i <= idQ; i++) {
+			correctSchedule.takeASeat();
+		}
 		
 		return correctSchedule.turnToDTO(correctSchedule);
 	}
