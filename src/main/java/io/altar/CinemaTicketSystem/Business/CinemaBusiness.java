@@ -62,8 +62,12 @@ public class CinemaBusiness {
 	public Cinema update(Cinema cinema) {
 		Cinema cinemaToBeUpdated = cinemaRepository.getById(cinema.getId());
 		
+		System.out.println(" teste "+cinema.getTimeOpen()+" "+cinemaToBeUpdated.getTimeOpen()+" "+cinema.getTimeClose()+" "+cinemaToBeUpdated.getTimeClose()+" "+cinema.getPause()+" "+cinemaToBeUpdated.getPause());
+
+		
 		if(cinema.getTimeOpen()!=cinemaToBeUpdated.getTimeOpen()||cinema.getTimeClose()!=cinemaToBeUpdated.getTimeClose()||cinema.getPause()!=cinemaToBeUpdated.getPause()) {
 			List<Room> rooms = cinemaToBeUpdated.getRooms();
+			
 			
 			for(Room room: rooms) {
 				
@@ -77,7 +81,7 @@ public class CinemaBusiness {
 						scheduleRepository.removeByID(schedule.getId());
 					}
 					
-					exibitionDay.createSchedule(cinema, exibitionDay.getRoom().getMovie());
+					//exibitionDay.createSchedule(cinema, exibitionDay.getRoom().getMovie());
 
 				}
 

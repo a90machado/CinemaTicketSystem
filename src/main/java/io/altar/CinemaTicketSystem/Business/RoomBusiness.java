@@ -41,14 +41,12 @@ public class RoomBusiness {
 		
 		
 		List<ExibitionDay> exibitionDays = roomBD.getExibitionDays();
-//		List<Long> idsExibitionday = new ArrayList<Long>();
-//		List<Long> idsSchedules = new ArrayList<Long>();
+
 		
 		for (ExibitionDay exibitionDay: exibitionDays){
-			System.out.println(exibitionDay.getId());
 			exibitionDayRepository.removeByID(exibitionDay.getId());
 		}
-
+		
 		create(room);
 
 		return room.turnToDTO(room);

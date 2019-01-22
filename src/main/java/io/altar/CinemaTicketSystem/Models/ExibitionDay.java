@@ -24,7 +24,7 @@ public class ExibitionDay extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 
 	// Attributes
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.MERGE)
 	private Room room;
 	private int day;
 	private int month;
