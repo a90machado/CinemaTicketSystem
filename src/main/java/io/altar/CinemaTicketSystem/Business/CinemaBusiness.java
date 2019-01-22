@@ -7,13 +7,15 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 
 import io.altar.CinemaTicketSystem.Models.Cinema;
-import io.altar.CinemaTicketSystem.Models.Movie;
+import io.altar.CinemaTicketSystem.Models.ExibitionDay;
 import io.altar.CinemaTicketSystem.Models.Room;
+import io.altar.CinemaTicketSystem.Models.Schedule;
 import io.altar.CinemaTicketSystem.Models.TypeOfTicket;
 import io.altar.CinemaTicketSystem.ModelsDTO.CinemaDTO;
-import io.altar.CinemaTicketSystem.ModelsDTO.RoomDTO;
 import io.altar.CinemaTicketSystem.Repositories.CinemaRepository;
+import io.altar.CinemaTicketSystem.Repositories.ExibitionDayRepository;
 import io.altar.CinemaTicketSystem.Repositories.RoomsRepository;
+import io.altar.CinemaTicketSystem.Repositories.ScheduleRepository;
 import io.altar.CinemaTicketSystem.Repositories.TypeOfTicketRepository;
 
 public class CinemaBusiness {
@@ -26,7 +28,12 @@ public class CinemaBusiness {
 	
 	@Inject
 	protected TypeOfTicketRepository typeOfTicketRepository;
-
+	
+	@Inject
+	protected ExibitionDayRepository exibitionDayRepository;
+	
+	@Inject
+	protected ScheduleRepository scheduleRepository;
 
 	@Transactional
 	public void delete(long id) {
@@ -53,6 +60,29 @@ public class CinemaBusiness {
 
 	@Transactional
 	public Cinema update(Cinema cinema) {
+		Cinema cinemaToBeUpdated = cinemaRepository.getById(cinema.getId());
+		
+		if(cinema.getTimeOpen()!=cinemaToBeUpdated.getTimeOpen()||cinema.getTimeClose()!=cinemaToBeUpdated.getTimeClose()||cinema.getPause()!=cinemaToBeUpdated.getPause()) {
+			List<Room> rooms = cinemaToBeUpdated.getRooms();
+			
+			for(Room room: rooms) {
+				
+				List<ExibitionDay> exibitionDays = room.getExibitionDays();
+				
+				for (ExibitionDay exibitionDay: exibitionDays){
+					List<Schedule> schedules =new ArrayList<Schedule>();
+					
+					for(Schedule schedule:schedules) {
+						schedule.setExibitionDay(null);
+						scheduleRepository.removeByID(schedule.getId());
+					}
+					
+					exibitionDay.createSchedule(cinema, exibitionDay.getRoom().getMovie());
+
+				}
+
+			}
+		}	
 		return cinemaRepository.update(cinema);
 	}
 
